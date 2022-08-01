@@ -3,7 +3,6 @@ package com.example.authentication.fragment.viewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.core.model.errorEntity
 import com.example.core.model.result
 import com.example.core.model.user
 import com.example.core.useCases.loginUser
@@ -20,7 +19,7 @@ class authViewModel @Inject constructor(
         get() = loginState
 
     fun login(user: user) {
-        if (loginUser.login(user)) loginState.postValue(result.Success(user))
-        else loginState.postValue(result.Error(errorEntity.Network))
+        loginState.postValue(loginUser.login(user))
+
     }
 }
