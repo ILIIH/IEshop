@@ -20,33 +20,33 @@ class authViewModel @Inject constructor(
     val _loginState: LiveData<Result<user>>
         get() = loginState
 
-
-    fun login(login: String, password: String){
+    fun login(login: String, password: String) {
         loginState.postValue(
-            loginUser.login(user("","",login,"","","",null,null,password))
+            loginUser.login(user("", "", login, "", "", "", null, null, password))
         )
     }
 
-    fun registrate(name: String,
-              surname: String,
-              login: String,
-              photo: String?,
-              telephone: String,
-              lotsList: List<product>?,
-              purchaseList: List<product>?,
-              password: String) {
+    fun registrate(
+        name: String,
+        surname: String,
+        login: String,
+        photo: String?,
+        telephone: String,
+        lotsList: List<product>?,
+        purchaseList: List<product>?,
+        password: String
+    ) {
 
         val loginRegex = Regex(pattern = "^(?=[a-zA-Z0-9._]{8,20}\$)(?!.*[_.]{2})[^_.].*[^_.]\$")
-        if(!loginRegex.matches(login)){
+        if (!loginRegex.matches(login)) {
             loginState.postValue(Result.Error(ErrorEntity.WrongCredentialsLogin))
             return
         }
         val emailRegex = Regex(pattern = "^[A-Za-z](.*)([@]{1})(.{1,})(\\\\.)(.{1,})")
-        if(!loginRegex.matches(login)){
+        if (!loginRegex.matches(login)) {
             loginState.postValue(Result.Error(ErrorEntity.WrongCredentialsLogin))
             return
         }
-  //      loginState.postValue(loginUser.login(user))
-
+        //      loginState.postValue(loginUser.login(user))
     }
 }

@@ -21,9 +21,17 @@
     <string name="telephone">Telephone</string>
     <string name="by_creating_an_account_you_agree_to_our">By creating an account, you agree to our</string>
     <string name="term_conditions">Term &amp; Conditions</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="otp_authentication">OTP Authentication</string>
     <string name="an_authentication_code_has_been">An authentication code has been</string>
     <string name="sent_to_61_0486935279">sent to (+61) 0486935279</string>
+
+    <!-- Errors -->
+    <string name="WrongCredentialsLoginError">Error wrong credentials</string>
+    <string name="WrongEmailError">Error wrong email</string>
+    <string name="DatabaceError">Error width Database need to contact width support </string>
+    <string name="SuccessLogin">Your erroe was success </string>
+
+
+
 </resources>

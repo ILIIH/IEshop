@@ -13,7 +13,6 @@ class loginUser constructor(private val repository: repository) {
             encryptedPassword.append(item.code + 11)
         }
 
-        if (repository.getUser(user.login)) return Result.Error(ErrorEntity.RepeatCredentials)
         return if (repository.login(user.login, encryptedPassword.toString()) != null) Result.Success(user)
         else Result.Error(ErrorEntity.DatabaceError)
     }
