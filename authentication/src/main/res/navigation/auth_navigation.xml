@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/auth_navigation"
+    app:startDestination="@id/onboardingFragment">
+
+    <fragment
+        android:id="@+id/onboardingFragment"
+        android:name="com.example.authentication.fragment.onboardingFragment"
+        android:label="fragment_onboarding"
+        tools:layout="@layout/fragment_onboarding" >
+        <action
+            android:id="@+id/login_from_home"
+            app:destination="@id/login" />
+        <action
+            android:id="@+id/registrate_form_home"
+            app:destination="@id/registrate" />
+    </fragment>
+    <fragment
+        android:id="@+id/login"
+        android:name="com.example.authentication.fragment.login"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/to_registrate"
+            app:destination="@id/registrate" />
+    </fragment>
+    <fragment
+        android:id="@+id/registrate"
+        android:name="com.example.authentication.fragment.registrate"
+        android:label="fragment_singn_up"
+        tools:layout="@layout/fragment_singn_up" >
+        <action
+            android:id="@+id/change_to_registrate"
+            app:destination="@id/login" />
+        <action
+            android:id="@+id/confirm_phone"
+            app:destination="@id/confirmation" />
+    </fragment>
+    <fragment
+        android:id="@+id/confirmation"
+        android:name="com.example.authentication.fragment.confirmation"
+        android:label="confirmation" />
+</navigation>

@@ -1,0 +1,28 @@
+package com.example.ieshop.di
+
+import com.example.ieshop.BuildConfig
+import com.example.ieshop.framework.sourse.remoteSourse.ShopService
+import dagger.Module
+import dagger.Provides
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
+import javax.inject.Singleton
+
+@Module
+class NetworkModule {
+    @Singleton
+    @Provides
+    fun provideRetrofit(): Retrofit {
+        return Retrofit.Builder()
+            .baseUrl(BuildConfig.BaceURL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+    }
+
+    @Singleton
+    @Provides
+    fun provideApi(retrofit: Retrofit): ShopService {
+        return retrofit.create(ShopService::class.java)
+    }
+
+}
