@@ -29,8 +29,14 @@ class shopRepository @Inject constructor(val localDB: LocalDatabase, val remoteD
         }
     }
 
-    override fun getUser(login: String): user {
-        TODO("Not yet implemented")
+    override fun getUser(login: String): Boolean {
+        val connection = checkInternet()
+        Log.i("TestingApp", "Internet = $connection")
+        return if (connection) {
+            remoteDB.getUserInfo(login).isNotEmpty()
+        } else {
+            localDB.userDao().getUserInfo(login).isNotEmpty()
+        }
     }
 
     override fun login(login: String, password: String): user? {
