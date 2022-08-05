@@ -2,6 +2,7 @@ package com.example.authentication.fragment
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,6 +12,8 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.authentication.R
 import com.example.authentication.databinding.FragmentLoginBinding
+import com.example.authentication.di.AuthDepsProvider
+import com.example.authentication.di.authDepsProvider
 import com.example.authentication.fragment.viewModel.authComponentViewModel
 import com.example.authentication.fragment.viewModel.authViewModel
 import com.example.authentication.fragment.viewModel.authViewModelFactory
@@ -18,7 +21,7 @@ import com.example.core.model.Result
 import dagger.Lazy
 import javax.inject.Inject
 
-class login : Fragment() {
+class LoginFragment : Fragment() {
 
     @Inject
     internal lateinit var authViewModelFactory: Lazy<authViewModelFactory>
@@ -28,6 +31,9 @@ class login : Fragment() {
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
+        if(requireActivity() is AuthDepsProvider) {
+            Log.i("AppProv","in Fragment is AuthDepsProvider")
+        }
         componentViewModel.authComponent.inject(this)
     }
 

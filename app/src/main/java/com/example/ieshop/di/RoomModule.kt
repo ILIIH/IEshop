@@ -1,5 +1,6 @@
 package com.example.ieshop.di
 
+import android.app.Application
 import android.content.Context
 import androidx.room.Room
 import com.example.ieshop.framework.sourse.localSourse.LocalDatabase
@@ -10,11 +11,10 @@ import javax.inject.Singleton
 @Module
 class RoomModule {
 
-    @Singleton
     @Provides
-    fun provideRoom(context: Context): LocalDatabase {
+    fun provideRoom(application: Application): LocalDatabase {
         return Room.databaseBuilder(
-            context,
+            application.applicationContext,
             LocalDatabase::class.java,
             "user_shop_database"
 

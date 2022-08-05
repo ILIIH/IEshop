@@ -1,22 +1,23 @@
 package com.example.ieshop.di
 
+import android.app.Application
 import android.content.Context
 import com.example.authentication.di.authDeps
 import com.example.core.repository.repository
 import com.example.ieshop.framework.repository.shopRepository
-import dagger.Binds
-import dagger.BindsInstance
-import dagger.Component
-import dagger.Module
+import dagger.*
+import javax.inject.Scope
 import javax.inject.Singleton
 
-@Singleton
+@AppScope
 @Component(modules = [NetworkModule::class, RoomModule::class, RepoModule::class])
 interface AppComponent : authDeps {
 
-    @Component.Factory
-    interface Factory {
-        fun create(@BindsInstance context: Context): AppComponent
+    @Component.Builder
+    interface Builder {
+        @BindsInstance
+        fun application(application: Application): Builder
+        fun build():AppComponent
     }
     override val repository: repository
 }
@@ -26,3 +27,6 @@ abstract class RepoModule {
     @Binds
     abstract fun bindRepo(shopRepository: shopRepository): repository
 }
+
+@Scope
+annotation class AppScope

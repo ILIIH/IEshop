@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.authentication.R
 
-class confirmation : Fragment() {
+class ConfirmationFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater,

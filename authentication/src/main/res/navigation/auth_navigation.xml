@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/onboardingFragment"
-        android:name="com.example.authentication.fragment.onboardingFragment"
+        android:name="com.example.authentication.fragment.OnboardingFragment"
         android:label="fragment_onboarding"
         tools:layout="@layout/fragment_onboarding" >
         <action
@@ -19,7 +19,7 @@
     </fragment>
     <fragment
         android:id="@+id/login"
-        android:name="com.example.authentication.fragment.login"
+        android:name="com.example.authentication.fragment.LoginFragment"
         android:label="fragment_login"
         tools:layout="@layout/fragment_login" >
         <action
@@ -28,7 +28,7 @@
     </fragment>
     <fragment
         android:id="@+id/registrate"
-        android:name="com.example.authentication.fragment.registrate"
+        android:name="com.example.authentication.fragment.RegistrateFragment"
         android:label="fragment_singn_up"
         tools:layout="@layout/fragment_singn_up" >
         <action
@@ -40,6 +40,6 @@
     </fragment>
     <fragment
         android:id="@+id/confirmation"
-        android:name="com.example.authentication.fragment.confirmation"
+        android:name="com.example.authentication.fragment.ConfirmationFragment"
         android:label="confirmation" />
 </navigation>

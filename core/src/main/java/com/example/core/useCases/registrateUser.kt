@@ -5,7 +5,7 @@ import com.example.core.repository.repository
 
 class registrateUser constructor(private val repository: repository) {
 
-    fun registrate(user: user): Boolean {
+    fun execute(user: user): Boolean {
         val encryptedPassword = StringBuffer()
         for (item in user.password) {
             encryptedPassword.append(item.code + 11)

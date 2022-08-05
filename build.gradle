@@ -1,9 +1,9 @@
 
 buildscript {
     ext{
-        room_version = '2.2.5'
+        room_version = '2.3.0'
         retrofit_version = "2.9.0"
-        dagger_version = '2.40.5'
+        dagger_version = '2.38.1'
         material_version = '1.6.0'
         nav_version = "2.5.1"
     }
