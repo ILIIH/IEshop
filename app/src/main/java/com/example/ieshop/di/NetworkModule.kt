@@ -10,7 +10,6 @@ import javax.inject.Singleton
 
 @Module
 class NetworkModule {
-    @Singleton
     @Provides
     fun provideRetrofit(): Retrofit {
         return Retrofit.Builder()
@@ -19,7 +18,6 @@ class NetworkModule {
             .build()
     }
 
-    @Singleton
     @Provides
     fun provideApi(retrofit: Retrofit): ShopService {
         return retrofit.create(ShopService::class.java)

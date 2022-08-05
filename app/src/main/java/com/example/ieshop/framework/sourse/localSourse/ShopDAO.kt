@@ -12,21 +12,21 @@ import com.example.ieshop.framework.sourse.entities.User
 
 @Dao
 interface ShopDAO {
-    @Query("SELECT * FROM Product LIMIT page, per_page")
+    @Query("SELECT * FROM Product LIMIT :page, :per_page")
     fun getProductPerPage(page: Int, per_page: Int): List<Product>
 
-    @Query("SELECT * FROM User WHERE Login = login")
-    fun getUserInfo(login: String): List<User>
+    @Query("SELECT * FROM User WHERE Login = :log")
+    fun getUserInfo(log: String): List<User>
 
-    @Query("SELECT * FROM Purchases WHERE Login = login")
+    @Query("SELECT * FROM Purchases WHERE ownerLogin = :login")
     fun getPurchases(login: String): List<Purchases>
 
-    @Query("SELECT * FROM User WHERE Login = login AND Password = password")
+    @Query("SELECT * FROM User WHERE Login = :login AND Password = :password")
     fun login(login: String, password: String): User
 
     @Query(
-        "SELECT COUNT(login) FROM User WHERE Name = name AND Surname = surname " +
-            "AND Login = login AND Photo = photo AND Telephone = telephone AND Password = password"
+        "SELECT COUNT(:login) FROM User WHERE Name = :name AND Surname = :surname " +
+            "AND Login = :login AND Photo = :photo AND Telephone = :telephone AND Password = :password"
     )
     fun countOfUser(name: String, surname: String, login: String, photo: String?, telephone: String, password: String): Int
 

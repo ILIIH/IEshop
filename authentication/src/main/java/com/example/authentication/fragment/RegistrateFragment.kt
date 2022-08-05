@@ -9,7 +9,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.authentication.R
 import com.example.authentication.databinding.FragmentSingnUpBinding
 
-class registrate : Fragment() {
+class RegistrateFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater,

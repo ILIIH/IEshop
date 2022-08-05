@@ -1,14 +1,16 @@
 package com.example.ieshop.di
 
 import android.app.Application
+import android.util.Log
+import com.example.authentication.di.AuthDepsProvider
+import com.example.authentication.di.authDeps
 
-open class MyApplication : Application() {
+open class MyApplication : Application(), AuthDepsProvider {
 
     val appComponent: AppComponent by lazy {
-        initializeComponent()
+        DaggerAppComponent.builder().application(this).build()
     }
 
-    open fun initializeComponent(): AppComponent {
-        return DaggerAppComponent.factory().create(applicationContext)
-    }
+    override val deps: authDeps = appComponent
+
 }

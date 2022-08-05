@@ -2,7 +2,7 @@ package com.example.authentication.di
 
 import android.app.Application
 import android.content.Context
-import com.example.authentication.fragment.login
+import com.example.authentication.fragment.LoginFragment
 import com.example.core.repository.repository
 import com.example.core.useCases.loginUser
 import com.example.core.useCases.registrateUser
@@ -20,7 +20,7 @@ annotation class authScope
     modules = [authModule::class]
 )
 interface AuthComponent {
-    fun inject(login: login)
+    fun inject(login: LoginFragment)
 
     @Component.Builder
     interface Builder {
@@ -51,6 +51,6 @@ interface AuthDepsProvider {
 val Context.authDepsProvider: AuthDepsProvider
     get() = when (this) {
         is AuthDepsProvider -> this
-        is Application -> error("Application must implemets AuthDepsProvider")
+        is Application ->  error("Application must implemets AuthDepsProvider")
         else -> applicationContext.authDepsProvider
     }
