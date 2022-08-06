@@ -18,6 +18,7 @@ import com.example.authentication.fragment.viewModel.authComponentViewModel
 import com.example.authentication.fragment.viewModel.authViewModel
 import com.example.authentication.fragment.viewModel.authViewModelFactory
 import com.example.core.model.Result
+import com.example.core_ui.LoadingFragment
 import dagger.Lazy
 import javax.inject.Inject
 
@@ -29,6 +30,7 @@ class LoginFragment : Fragment() {
     val authViewModel: authViewModel by viewModels { authViewModelFactory.get() }
     val componentViewModel: authComponentViewModel by viewModels()
 
+    val loadingFragment = LoadingFragment()
     override fun onAttach(context: Context) {
         super.onAttach(context)
         if(requireActivity() is AuthDepsProvider) {
@@ -45,6 +47,7 @@ class LoginFragment : Fragment() {
         val view = FragmentLoginBinding.inflate(layoutInflater, container, false)
 
         authViewModel._loginState.observe(requireActivity()) { result ->
+            loadingFragment.dismiss()
             when (result) {
                 is Result.Error -> Toast.makeText(context, getString(R.string.DatabaceError), Toast.LENGTH_SHORT).show()
                 is Result.Success -> {
@@ -56,6 +59,7 @@ class LoginFragment : Fragment() {
 
         view.signInButton.setOnClickListener {
             authViewModel.login(view.editTextTextLogin.text.toString(), view.editTextPassword.text.toString())
+            loadingFragment.show(requireActivity().supportFragmentManager,"LoadingFragdfsdfgmentTag")
         }
 
         view.signUpButton.setOnClickListener { findNavController().navigate(R.id.to_registrate) }

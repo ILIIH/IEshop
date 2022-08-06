@@ -16,3 +16,4 @@ rootProject.name = "IEshop"
 include ':app'
 include ':core'
 include ':authentication'
+include ':core-ui'
