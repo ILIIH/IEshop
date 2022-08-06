@@ -23,7 +23,7 @@ interface ShopService {
     fun getPurchases(@Path("login",) login: String): List<Purchases>
 
     @POST("/login")
-    fun login(@Body login: String, @Body password: String): User
+    fun login(@Body login: String, @Body password: String): Boolean
 
     @POST("/registrate")
     fun registrate(

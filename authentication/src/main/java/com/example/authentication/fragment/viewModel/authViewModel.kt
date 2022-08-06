@@ -3,12 +3,14 @@ package com.example.authentication.fragment.viewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.core.model.ErrorEntity
 import com.example.core.model.Result
 import com.example.core.model.product
 import com.example.core.model.user
 import com.example.core.useCases.loginUser
 import com.example.core.useCases.registrateUser
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class authViewModel @Inject constructor(
@@ -21,9 +23,11 @@ class authViewModel @Inject constructor(
         get() = loginState
 
     fun login(login: String, password: String) {
-        loginState.postValue(
-            loginUser.execute(user("", "", login, "", "", "", null, null, password))
-        )
+        viewModelScope.launch {
+            loginState.postValue(
+                loginUser.execute(user("", "", login, "", "", "", null, null, password))
+            )
+        }
     }
 
     fun registrate(

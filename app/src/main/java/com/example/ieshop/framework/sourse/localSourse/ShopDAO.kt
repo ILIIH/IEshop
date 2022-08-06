@@ -21,8 +21,8 @@ interface ShopDAO {
     @Query("SELECT * FROM Purchases WHERE ownerLogin = :login")
     fun getPurchases(login: String): List<Purchases>
 
-    @Query("SELECT * FROM User WHERE Login = :login AND Password = :password")
-    fun login(login: String, password: String): User
+    @Query("SELECT COUNT(*) FROM User WHERE Login = :login AND Password = :password")
+    fun login(login: String, password: String): Int
 
     @Query(
         "SELECT COUNT(:login) FROM User WHERE Name = :name AND Surname = :surname " +

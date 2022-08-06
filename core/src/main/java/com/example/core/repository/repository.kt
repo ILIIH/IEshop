@@ -13,8 +13,8 @@ interface repository {
         telephone: String,
         password: String
     ): Boolean
-    fun getUser(login: String): Boolean
-    fun login(login: String, password: String): user?
+    suspend fun getUser(login: String): Boolean
+    suspend fun login(login: String, password: String): Boolean
     fun getUsersByPage(page: Int): List<user>
     fun getPurchaseByPage(page: Int): List<product>
 }

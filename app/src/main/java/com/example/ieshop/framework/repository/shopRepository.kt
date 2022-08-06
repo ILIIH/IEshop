@@ -7,6 +7,8 @@ import com.example.core.repository.repository
 import com.example.ieshop.framework.sourse.localSourse.LocalDatabase
 import com.example.ieshop.framework.sourse.remoteSourse.ShopService
 import com.example.ieshop.utils.checkInternet
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 class shopRepository @Inject constructor(val localDB: LocalDatabase, val remoteDB: ShopService) : repository {
@@ -29,7 +31,7 @@ class shopRepository @Inject constructor(val localDB: LocalDatabase, val remoteD
         }
     }
 
-    override fun getUser(login: String): Boolean {
+    override suspend fun getUser(login: String): Boolean {
         val connection = checkInternet()
         Log.i("TestingApp", "Internet = $connection")
         return if (connection) {
@@ -39,8 +41,17 @@ class shopRepository @Inject constructor(val localDB: LocalDatabase, val remoteD
         }
     }
 
-    override fun login(login: String, password: String): user? {
-        TODO("Not yet implemented")
+    override suspend fun login(login: String, password: String): Boolean {
+        return withContext(Dispatchers.IO) {
+            val connection = checkInternet()
+            Log.i("TestingApp", "Internet = $connection")
+            return@withContext if (connection) {
+                remoteDB.login(login, password)
+            } else {
+                localDB.userDao().login(login, password) > 0
+            }
+        }
+
     }
 
     override fun getUsersByPage(page: Int): List<user> {
