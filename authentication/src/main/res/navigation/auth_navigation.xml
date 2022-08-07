@@ -21,7 +21,7 @@
         android:id="@+id/login"
         android:name="com.example.authentication.fragment.LoginFragment"
         android:label="fragment_login"
-        tools:layout="@layout/fragment_login" >
+        tools:layout="@layout/loading" >
         <action
             android:id="@+id/to_registrate"
             app:destination="@id/registrate" />

@@ -4,17 +4,23 @@
     android:id="@+id/login_background"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:layout_gravity="center"
+    android:background="#46FFFFFF"
+    android:foregroundGravity="center"
     android:gravity="center"
     android:orientation="horizontal"
     tools:context=".LoadingFragment">
 
     <ProgressBar
-        android:id="@+id/progressBar"
-        style="?android:attr/progressBarStyle"
+        android:id="@+id/ProgressBar01"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:backgroundTint="@color/white"
-        android:scrollbarSize="20dp" />
+        android:layout_centerInParent="true"
+        android:indeterminate="true"
+        android:indeterminateDrawable="@drawable/progress_bg"
+        android:progress="0"
+        android:background="#939393"
+
+        tools:ignore="ObsoleteLayoutParam" />
+
 </LinearLayout>

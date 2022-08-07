@@ -43,7 +43,7 @@ class LoginFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         val view = FragmentLoginBinding.inflate(layoutInflater, container, false)
 
         authViewModel._loginState.observe(requireActivity()) { result ->
@@ -59,7 +59,8 @@ class LoginFragment : Fragment() {
 
         view.signInButton.setOnClickListener {
             authViewModel.login(view.editTextTextLogin.text.toString(), view.editTextPassword.text.toString())
-            loadingFragment.show(requireActivity().supportFragmentManager,"LoadingFragdfsdfgmentTag")
+            loadingFragment.show(requireActivity().supportFragmentManager,LoadingFragment.TAG)
+
         }
 
         view.signUpButton.setOnClickListener { findNavController().navigate(R.id.to_registrate) }

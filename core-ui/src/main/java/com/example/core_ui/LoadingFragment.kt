@@ -5,9 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
-
-
-
+import com.example.core_ui.databinding.LoadingBinding
 
 
 class LoadingFragment : DialogFragment() {
@@ -19,9 +17,8 @@ class LoadingFragment : DialogFragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val rootView: View = inflater.inflate(R.layout.fragment_login, container, false)
-        dialog!!.setTitle("simple dialog")
-        return rootView
+        val view = LoadingBinding.inflate(layoutInflater, container, false)
+        return view.root
     }
 
 }
