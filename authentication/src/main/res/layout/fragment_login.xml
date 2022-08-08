@@ -18,31 +18,17 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/place_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:fontFamily="@font/dm_sans_bold"
-        android:text="Perth, Western Australia"
-        android:textColor="@color/black"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="@+id/place_icon"
-        app:layout_constraintStart_toEndOf="@+id/place_icon"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
-
-    <TextView
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="61dp"
         android:fontFamily="@font/dm_sans_bold"
         android:text="@string/let_s_sign_you_in"
         android:textColor="@color/black"
         android:textSize="30sp"
         app:layout_constraintStart_toEndOf="@+id/place_icon"
         app:layout_constraintStart_toStartOf="@+id/place_icon"
-        app:layout_constraintTop_toBottomOf="@+id/place_text" />
+        app:layout_constraintTop_toBottomOf="@+id/place_icon" />
 
     <TextView
         android:id="@+id/textView5"
@@ -233,5 +219,19 @@
             app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="2dp"
+        android:backgroundTint="#d9d9d9"
+        android:dropDownHeight="100dp"
+        android:theme="@style/SpinnerTheme"
+        app:layout_constraintBottom_toBottomOf="@+id/place_icon"
+        app:layout_constraintStart_toEndOf="@+id/place_icon"
+        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -1,9 +1,9 @@
 package com.example.ieshop.framework.repository
 
 import android.util.Log
-import com.example.core.model.product
-import com.example.core.model.user
-import com.example.core.repository.repository
+import com.example.core.domain.product
+import com.example.core.domain.user
+import com.example.core.data.repository.repository
 import com.example.ieshop.framework.sourse.localSourse.LocalDatabase
 import com.example.ieshop.framework.sourse.remoteSourse.ShopService
 import com.example.ieshop.utils.checkInternet

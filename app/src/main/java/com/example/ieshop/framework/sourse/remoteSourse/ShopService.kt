@@ -3,6 +3,7 @@ package com.example.ieshop.framework.sourse.remoteSourse
 import com.example.ieshop.framework.sourse.entities.Product
 import com.example.ieshop.framework.sourse.entities.Purchases
 import com.example.ieshop.framework.sourse.entities.User
+import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.DELETE
 import retrofit2.http.GET
@@ -14,16 +15,16 @@ import retrofit2.http.Query
 interface ShopService {
 
     @GET("/product")
-    fun getProductPerPage(@Query("page") page: Int, @Query("per_page") per_page: Int): List<Product>
+    fun getProductPerPage(@Query("page") page: Int, @Query("per_page") per_page: Int): Response<List<Product>>
 
     @GET("/{login}/user/info")
-    fun getUserInfo(@Path("login",) login: String): List<User>
+    fun getUserInfo(@Path("login",) login: String): Response<List<User>>
 
     @GET("/{login}/user/purchase")
-    fun getPurchases(@Path("login",) login: String): List<Purchases>
+    fun getPurchases(@Path("login",) login: String): Response<List<Purchases>>
 
     @POST("/login")
-    fun login(@Body login: String, @Body password: String): Boolean
+    fun login(@Body login: String, @Body password: String): Response<Boolean>
 
     @POST("/registrate")
     fun registrate(
@@ -34,7 +35,7 @@ interface ShopService {
         @Body photo: String?,
         @Body telephone: String,
         @Body password: String
-    ): Boolean
+    ): Response<Boolean>
 
     @POST("/add/purchases")
     fun addPurchases(
@@ -44,7 +45,7 @@ interface ShopService {
         @Body buyData: String,
         @Body photos: List<String>,
         @Body ownerLogin: String
-    ): Boolean
+    ): Response<Boolean>
 
     @POST("/add/product")
     fun addProduct(
@@ -54,7 +55,7 @@ interface ShopService {
         @Body publishData: String,
         @Body photos: List<String>,
         @Body ownerLogin: String
-    ): Boolean
+    ): Response<Boolean>
 
     @DELETE("/delete/product")
     fun deleteProduct(
@@ -64,7 +65,7 @@ interface ShopService {
         @Body publishData: String,
         @Body photos: List<String>,
         @Body ownerLogin: String
-    ): Boolean
+    ): Response<Boolean>
 
     @PUT("/user/change")
     fun changeUserInfo(
@@ -75,5 +76,5 @@ interface ShopService {
         @Body photo: String?,
         @Body telephone: String,
         @Body password: String
-    ): Boolean
+    ): Response<Boolean>
 }

@@ -1,7 +1,7 @@
-package com.example.core.repository
+package com.example.core.data.repository
 
-import com.example.core.model.product
-import com.example.core.model.user
+import com.example.core.domain.product
+import com.example.core.domain.user
 
 interface repository {
     fun registrate(

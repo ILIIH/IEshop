@@ -1,9 +1,9 @@
-package com.example.core.useCases
+package com.example.core.usecases
 
-import com.example.core.model.user
-import com.example.core.repository.repository
+import com.example.core.domain.user
+import com.example.core.data.repository.repository
 
-class registrateUser constructor(private val repository: repository) {
+class registrate constructor(private val repository: repository) {
 
     fun execute(user: user): Boolean {
         val encryptedPassword = StringBuffer()

@@ -1,5 +1,6 @@
 package com.example.core_ui
 
+import android.app.Dialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -20,5 +21,10 @@ class LoadingFragment : DialogFragment() {
         val view = LoadingBinding.inflate(layoutInflater, container, false)
         return view.root
     }
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setStyle(DialogFragment.STYLE_NO_FRAME, R.style.FullScreenDialog)
+    }
+
 
 }

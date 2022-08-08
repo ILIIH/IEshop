@@ -1,13 +1,11 @@
 package com.example.ieshop.di
 
 import android.app.Application
-import android.content.Context
 import com.example.authentication.di.authDeps
-import com.example.core.repository.repository
+import com.example.core.data.repository.repository
 import com.example.ieshop.framework.repository.shopRepository
 import dagger.*
 import javax.inject.Scope
-import javax.inject.Singleton
 
 @AppScope
 @Component(modules = [NetworkModule::class, RoomModule::class, RepoModule::class])

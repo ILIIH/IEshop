@@ -4,18 +4,18 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.core.model.ErrorEntity
-import com.example.core.model.Result
-import com.example.core.model.product
-import com.example.core.model.user
-import com.example.core.useCases.loginUser
-import com.example.core.useCases.registrateUser
+import com.example.core.domain.error.ErrorEntity
+import com.example.core.domain.Result
+import com.example.core.domain.product
+import com.example.core.domain.user
+import com.example.core.usecases.login
+import com.example.core.usecases.registrate
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class authViewModel @Inject constructor(
-    private val loginUser: loginUser,
-    private val registrateUser: registrateUser,
+    private val loginUser: login,
+    private val registrateUser: registrate,
 ) : ViewModel() {
 
     private val loginState = MutableLiveData<Result<user>> ()

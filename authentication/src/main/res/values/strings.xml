@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">authentication</string>
     <string name="introducting">Here you can buy or sell any products that you like, absolutely free. IEshop : shopping for every day</string>
     <string name="welcome_to_ieshop">Welcome to IEshop !</string>
