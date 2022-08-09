@@ -20,6 +20,9 @@ interface ShopService {
     @GET("/{login}/user/info")
     fun getUserInfo(@Path("login",) login: String): Response<List<User>>
 
+    @POST("/{login}/user/purchase")
+    fun countOfUser(@Body login: String): Response<List<Purchases>>
+
     @GET("/{login}/user/purchase")
     fun getPurchases(@Path("login",) login: String): Response<List<Purchases>>
 
@@ -34,8 +37,9 @@ interface ShopService {
         @Body login: String,
         @Body photo: String?,
         @Body telephone: String,
-        @Body password: String
-    ): Response<Boolean>
+        @Body password: String,
+        @Body country: String
+        ): Response<Boolean>
 
     @POST("/add/purchases")
     fun addPurchases(

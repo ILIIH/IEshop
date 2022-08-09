@@ -9,13 +9,13 @@
 
     <ImageView
         android:id="@+id/place_icon"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
+        android:layout_height="30dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="28dp"
         android:src="@drawable/map_point"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_width="30dp" />
 
     <TextView
         android:id="@+id/textView4"
@@ -220,18 +220,29 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <Spinner
-        android:id="@+id/spinner"
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/menu"
+        style="@style/Widget.Material3.TextInputLayout.FilledBox.ExposedDropdownMenu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="2dp"
-        android:backgroundTint="#d9d9d9"
-        android:dropDownHeight="100dp"
-        android:theme="@style/SpinnerTheme"
+        app:boxBackgroundColor="@color/white"
+        android:gravity="end"
+        android:layout_marginStart="10dp"
         app:layout_constraintBottom_toBottomOf="@+id/place_icon"
-        app:layout_constraintStart_toEndOf="@+id/place_icon"
-        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+        app:layout_constraintStart_toEndOf="@+id/place_icon">
 
+        <AutoCompleteTextView
+            style="@style/SpinnerTheme"
+            android:id="@+id/spinner"
+            android:gravity="start"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:inputType="none"
+            tools:ignore="TouchTargetSizeCheck"
+            tools:text="Happy" />
+    </com.google.android.material.textfield.TextInputLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -25,7 +25,7 @@ class authViewModel @Inject constructor(
     fun login(login: String, password: String) {
         viewModelScope.launch {
             loginState.postValue(
-                loginUser.execute(user("", "", login, "", "", "", null, null, password))
+                loginUser.execute(user("", "", login, "", "", "", null, null, password,""))
             )
         }
     }

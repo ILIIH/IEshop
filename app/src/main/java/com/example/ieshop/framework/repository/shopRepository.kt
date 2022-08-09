@@ -4,6 +4,7 @@ import android.util.Log
 import com.example.core.domain.product
 import com.example.core.domain.user
 import com.example.core.data.repository.repository
+import com.example.ieshop.framework.sourse.entities.User
 import com.example.ieshop.framework.sourse.localSourse.LocalDatabase
 import com.example.ieshop.framework.sourse.remoteSourse.ShopService
 import com.example.ieshop.utils.checkInternet
@@ -18,16 +19,24 @@ class shopRepository @Inject constructor(val localDB: LocalDatabase, val remoteD
         name: String,
         surname: String,
         login: String,
-        photo: String?,
+        photo: String,
         telephone: String,
-        password: String
+        password: String,
+        country:String
     ): Boolean {
         val connection = checkInternet()
         Log.i("TestingApp", "Internet = $connection")
-        return if (connection) {
-            remoteDB.registrate(username, name, surname, login, photo, telephone, password)
+        return return if (connection) {
+            if(remoteDB.countOfUser(login).body()?.isNotEmpty() == true){
+                remoteDB.registrate(username, name, surname, login, photo, telephone, password,country).isSuccessful
+                true
+            } else false
+
         } else {
-            localDB.userDao().countOfUser(name, surname, login, photo, telephone, password) != 0
+            if(localDB.userDao().countOfUser(login) != 0){
+                localDB.userDao().registrate(User( name, surname, login, photo, telephone, password,country))
+                true
+            } else false
         }
     }
 
@@ -35,7 +44,7 @@ class shopRepository @Inject constructor(val localDB: LocalDatabase, val remoteD
         val connection = checkInternet()
         Log.i("TestingApp", "Internet = $connection")
         return if (connection) {
-            remoteDB.getUserInfo(login).isNotEmpty()
+            remoteDB.getUserInfo(login).body()!!.isNotEmpty()
         } else {
             localDB.userDao().getUserInfo(login).isNotEmpty()
         }
@@ -46,7 +55,7 @@ class shopRepository @Inject constructor(val localDB: LocalDatabase, val remoteD
             val connection = checkInternet()
             Log.i("TestingApp", "Internet = $connection")
             return@withContext if (connection) {
-                remoteDB.login(login, password)
+                remoteDB.login(login, password).isSuccessful
             } else {
                 localDB.userDao().login(login, password) > 0
             }

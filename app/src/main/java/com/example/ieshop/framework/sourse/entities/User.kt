@@ -11,5 +11,6 @@ data class User(
     @ColumnInfo(name = "Login") @PrimaryKey val login: String,
     @ColumnInfo(name = "Photo") val photo: String,
     @ColumnInfo(name = "Telephone") val telephone: String,
-    @ColumnInfo(name = "Password") val password: String
+    @ColumnInfo(name = "Password") val password: String,
+    @ColumnInfo(name = "Country") val country: String
 )

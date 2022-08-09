@@ -9,9 +9,10 @@ interface repository {
         name: String,
         surname: String,
         login: String,
-        photo: String?,
+        photo: String,
         telephone: String,
-        password: String
+        password: String,
+        country:String
     ): Boolean
     suspend fun getUser(login: String): Boolean
     suspend fun login(login: String, password: String): Boolean

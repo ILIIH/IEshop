@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import android.widget.AutoCompleteTextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -35,7 +36,7 @@ class LoginFragment : Fragment() {
 
     // should to replace width list of country from datyabace when it will be ready TODO
     val Countries = arrayOf(
-        "Kabul, Afghanistan", "Tirana, Albania",
+         "Tirana, Albania",
         "Yerevan, Armenia", "Vienna, Austri",
         "Baku, Azerbaijan", "Brasilia, Brazil",
         "Minsk, Belarus", "Brussels, Belgium",
@@ -43,7 +44,7 @@ class LoginFragment : Fragment() {
         "Prague, Czechia", "Brasilia, Brazil",
         "Helsinki, Finland", "Paris, France",
         "Tokyo, Japan", "Kyiv, Ukraine",
-        "London, United Kingdom", "Washington, D.C, United States of America",
+        "London, United Kingdom", "Washington, D.C, USA",
         "Ankara, Turkey"
     )
 
@@ -64,9 +65,11 @@ class LoginFragment : Fragment() {
         val view = FragmentLoginBinding.inflate(layoutInflater, container, false)
 
         // prepare Spiner with counties
+        (view.spinner as AutoCompleteTextView).setText("Kabul, Afghanistan")
         val spinnerArrayAdapter =
             ArrayAdapter<String>(requireActivity().applicationContext, android.R.layout.simple_spinner_item, Countries)
-        view.spinner.adapter = spinnerArrayAdapter
+        (view.spinner as AutoCompleteTextView).setAdapter(spinnerArrayAdapter)
+
 
         ///////////////
 
