@@ -21,14 +21,11 @@ interface ShopDAO {
     @Query("SELECT * FROM Purchases WHERE ownerLogin = :login")
     fun getPurchases(login: String): List<Purchases>
 
-    @Query("SELECT * FROM User WHERE Login = :login AND Password = :password")
-    fun login(login: String, password: String): User
+    @Query("SELECT COUNT(*) FROM User WHERE Login = :login AND Password = :password")
+    fun login(login: String, password: String): Int
 
-    @Query(
-        "SELECT COUNT(:login) FROM User WHERE Name = :name AND Surname = :surname " +
-            "AND Login = :login AND Photo = :photo AND Telephone = :telephone AND Password = :password"
-    )
-    fun countOfUser(name: String, surname: String, login: String, photo: String?, telephone: String, password: String): Int
+    @Query("SELECT COUNT(:login) FROM User WHERE Login = :login ")
+    fun countOfUser(login: String): Int
 
     @Insert(onConflict = OnConflictStrategy.ABORT)
     fun registrate(user: User)

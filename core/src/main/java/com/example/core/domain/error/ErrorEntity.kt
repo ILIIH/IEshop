@@ -1,4 +1,4 @@
-package com.example.core.model
+package com.example.core.domain.error
 
 sealed class ErrorEntity {
     object Network : ErrorEntity()
@@ -16,4 +16,6 @@ sealed class ErrorEntity {
     object RepeatCredentials : ErrorEntity()
 
     object DatabaceError : ErrorEntity()
+
 }
+

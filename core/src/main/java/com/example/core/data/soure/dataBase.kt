@@ -1,7 +1,7 @@
-package com.example.core.soure
+package com.example.core.data.soure
 
-import com.example.core.model.product
-import com.example.core.model.user
+import com.example.core.domain.product
+import com.example.core.domain.user
 
 interface dataBase {
     fun registrate(login: String, password: String): Boolean

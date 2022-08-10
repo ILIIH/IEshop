@@ -1,4 +1,4 @@
-package com.example.core.model
+package com.example.core.domain
 
 data class product(
     val name: String,
