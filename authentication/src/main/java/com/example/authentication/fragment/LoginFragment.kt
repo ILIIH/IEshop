@@ -18,11 +18,10 @@ import com.example.authentication.di.AuthDepsProvider
 import com.example.authentication.fragment.viewModel.authComponentViewModel
 import com.example.authentication.fragment.viewModel.authViewModel
 import com.example.authentication.fragment.viewModel.authViewModelFactory
-import com.example.core.domain.Result
+import com.example.core.domain.error.UIState
 import com.example.core_ui.LoadingFragment
 import dagger.Lazy
 import javax.inject.Inject
-
 
 class LoginFragment : Fragment() {
 
@@ -35,8 +34,8 @@ class LoginFragment : Fragment() {
     val loadingFragment = LoadingFragment()
 
     // should to replace width list of country from datyabace when it will be ready TODO
-    val Countries = arrayOf(
-         "Tirana, Albania",
+    val countries = arrayOf(
+        "Tirana, Albania",
         "Yerevan, Armenia", "Vienna, Austri",
         "Baku, Azerbaijan", "Brasilia, Brazil",
         "Minsk, Belarus", "Brussels, Belgium",
@@ -48,11 +47,10 @@ class LoginFragment : Fragment() {
         "Ankara, Turkey"
     )
 
-
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        if(requireActivity() is AuthDepsProvider) {
-            Log.i("AppProv","in Fragment is AuthDepsProvider")
+        if (requireActivity() is AuthDepsProvider) {
+            Log.i("AppProv", "in Fragment is AuthDepsProvider")
         }
         componentViewModel.authComponent.inject(this)
     }
@@ -67,17 +65,16 @@ class LoginFragment : Fragment() {
         // prepare Spiner with counties
         (view.spinner as AutoCompleteTextView).setText("Kabul, Afghanistan")
         val spinnerArrayAdapter =
-            ArrayAdapter<String>(requireActivity().applicationContext, android.R.layout.simple_spinner_item, Countries)
+            ArrayAdapter<String>(requireActivity().applicationContext, android.R.layout.simple_spinner_item, countries)
         (view.spinner as AutoCompleteTextView).setAdapter(spinnerArrayAdapter)
 
-
-        ///////////////
+        // /////////////
 
         authViewModel._loginState.observe(requireActivity()) { result ->
             loadingFragment.dismiss()
             when (result) {
-                is Result.Error -> Toast.makeText(context, getString(R.string.DatabaceError), Toast.LENGTH_SHORT).show()
-                is Result.Success -> {
+                is UIState.Error -> Toast.makeText(context, getString(R.string.DatabaceError), Toast.LENGTH_SHORT).show()
+                is UIState.Success -> {
                     Toast.makeText(context, getString(R.string.SuccessLogin), Toast.LENGTH_SHORT).show()
                     //  TODO()add navigation
                 }
@@ -86,8 +83,7 @@ class LoginFragment : Fragment() {
 
         view.signInButton.setOnClickListener {
             authViewModel.login(view.editTextTextLogin.text.toString(), view.editTextPassword.text.toString())
-            loadingFragment.show(requireActivity().supportFragmentManager,LoadingFragment.TAG)
-
+            loadingFragment.show(requireActivity().supportFragmentManager, LoadingFragment.TAG)
         }
 
         view.signUpButton.setOnClickListener { findNavController().navigate(R.id.to_registrate) }

@@ -8,13 +8,13 @@ import javax.inject.Inject
 import javax.inject.Provider
 
 class authViewModelFactory
-    @Inject constructor(
-        private val loginUser: Provider<login>,
-        private val registrateUser: Provider<registrate>,
-    ) : ViewModelProvider.Factory{
+@Inject constructor(
+    private val loginUser: Provider<login>,
+    private val registrateUser: Provider<registrate>
+) : ViewModelProvider.Factory {
 
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        require(modelClass ==authViewModel::class.java)
-        return authViewModel(loginUser.get(),registrateUser.get()) as T
+        require(modelClass == authViewModel::class.java)
+        return authViewModel(loginUser.get(), registrateUser.get()) as T
     }
 }

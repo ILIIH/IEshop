@@ -18,20 +18,19 @@ interface ShopService {
     fun getProductPerPage(@Query("page") page: Int, @Query("per_page") per_page: Int): Response<List<Product>>
 
     @GET("/{login}/user/info")
-    fun getUserInfo(@Path("login",) login: String): Response<List<User>>
+    fun getUserInfo(@Path("login") login: String): Response<List<User>>
 
     @POST("/{login}/user/purchase")
     fun countOfUser(@Body login: String): Response<List<Purchases>>
 
     @GET("/{login}/user/purchase")
-    fun getPurchases(@Path("login",) login: String): Response<List<Purchases>>
+    fun getPurchases(@Path("login") login: String): Response<List<Purchases>>
 
     @POST("/login")
     fun login(@Body login: String, @Body password: String): Response<Boolean>
 
     @POST("/registrate")
     fun registrate(
-        @Body username: String,
         @Body name: String,
         @Body surname: String,
         @Body login: String,
@@ -39,7 +38,7 @@ interface ShopService {
         @Body telephone: String,
         @Body password: String,
         @Body country: String
-        ): Response<Boolean>
+    ): Response<Boolean>
 
     @POST("/add/purchases")
     fun addPurchases(

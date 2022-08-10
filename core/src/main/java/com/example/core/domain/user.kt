@@ -10,5 +10,5 @@ data class user(
     val lotsList: List<product>?,
     val purchaseList: List<product>?,
     val password: String,
-    val country:String
+    val country: String
 )
