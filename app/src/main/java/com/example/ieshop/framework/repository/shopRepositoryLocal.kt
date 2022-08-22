@@ -6,6 +6,7 @@ import com.example.core.domain.user
 import com.example.ieshop.framework.sourse.localSourse.LocalDatabase
 import com.example.ieshop.utils.asUserDomain
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
@@ -22,10 +23,15 @@ class shopRepositoryLocal @Inject constructor(
         } else false
     }
 
-    override suspend fun getUser(login: String): Boolean {
-        return localDB.userDao().getUserInfo(login).isNotEmpty()
+    override suspend fun getUser(login: String): Flow<Boolean> {
+        TODO("Not yet implemented")
     }
 
+    /*
+        override suspend fun getUser(login: String): Boolean {
+            return localDB.userDao().getUserInfo(login).isNotEmpty()
+        }
+    */
     override suspend fun login(login: String, password: String): Boolean {
         return withContext(Dispatchers.IO) {
             localDB.userDao().login(login, password) > 0

@@ -5,6 +5,7 @@ import com.example.core.domain.product
 import com.example.core.domain.user
 import com.example.ieshop.framework.sourse.remoteSourse.ShopService
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
@@ -28,8 +29,12 @@ class shopRepositoryRemote @Inject constructor(
         } else false
     }
 
-    override suspend fun getUser(login: String): Boolean {
+ /*   override suspend fun getUser(login: String): Boolean {
         return remoteDB.getUserInfo(login).body()!!.isNotEmpty()
+    }
+*/
+    override suspend fun getUser(login: String): Flow<Boolean> {
+        TODO("Not yet implemented")
     }
 
     override suspend fun login(login: String, password: String): Boolean {
