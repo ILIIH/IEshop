@@ -39,8 +39,8 @@ class authViewModel @Inject constructor(
         lotsList: List<product>?,
         purchaseList: List<product>?,
         password: String,
-        email:String,
-        country:String
+        email: String,
+        country: String
     ) {
         val loginRegex = Regex(pattern = "^(?=[a-zA-Z0-9._]{8,20}\$)(?!.*[_.]{2})[^_.].*[^_.]\$")
         if (!loginRegex.matches(login)) {
@@ -53,17 +53,18 @@ class authViewModel @Inject constructor(
             return
         }
         registrateUser.execute(
-            user(name = name,
-            surname = surname,
-            login = login,
-            email = email,
-            photo = photo,
-            telephone =telephone,
-            lotsList =lotsList,
-            purchaseList =purchaseList,
-            password =password,
-            country =  country)
+            user(
+                name = name,
+                surname = surname,
+                login = login,
+                email = email,
+                photo = photo,
+                telephone = telephone,
+                lotsList = lotsList,
+                purchaseList = purchaseList,
+                password = password,
+                country = country
+            )
         )
-
     }
 }

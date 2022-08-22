@@ -28,6 +28,11 @@ class shopRepositoryLocal @Inject constructor(
     }
 
     /*
+        override suspend fun getUser(login: String): Flow<Boolean> {
+            TODO("Not yet implemented")
+        }
+    */
+    /*
         override suspend fun getUser(login: String): Boolean {
             return localDB.userDao().getUserInfo(login).isNotEmpty()
         }

@@ -1,8 +1,10 @@
 package com.example.core.domain.error
 
-sealed class UIState<T> {
-    class Idle<T> : UIState<T>()
-    class Loading<T> : UIState<T>()
-    class Error<T>(val error: ErrorEntity) : UIState<T>()
-    class Success<T>(val data: T) : UIState<T>()
+sealed class UIState<T>(
+    val data: T? = null,
+    val error: ErrorEntity? = null
+) {
+    class Success<T>(data: T) : UIState<T>(data)
+    class Loading<T>(data: T? = null) : UIState<T>(data)
+    class Error<T>(throwable: ErrorEntity, data: T? = null) : UIState<T>(data, throwable)
 }

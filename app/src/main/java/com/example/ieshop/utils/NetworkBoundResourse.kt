@@ -1,9 +1,7 @@
 package com.example.ieshop.utils
 
-import android.util.Log
 import com.example.core.domain.error.ErrorEntity
 import com.example.core.domain.error.UIState
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.*
 
 inline fun <ResultType, RequestType> networkBoundResource(
@@ -16,15 +14,16 @@ inline fun <ResultType, RequestType> networkBoundResource(
 
     val flow = if (shouldFetch(data)) {
         emit(UIState.Loading(data))
+
         try {
             saveFetchResult(fetch())
             query().map { UIState.Success(it) }
         } catch (throwable: Throwable) {
-            query().map { UIState.Error(ErrorEntity.DatabaceError, it) }
+            query().map { UIState.Error(ErrorEntity.Network, it) }
         }
     } else {
         query().map { UIState.Success(it) }
     }
 
     emitAll(flow)
-}.flowOn(Dispatchers.IO)
+}
