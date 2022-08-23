@@ -204,7 +204,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <EditText
-                android:id="@+id/editTextTextEmailAddress"
+                android:id="@+id/username"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -233,11 +233,11 @@
                 android:text="@string/email"
                 android:textColor="#8F92A1"
                 android:textSize="12sp"
-                app:layout_constraintStart_toStartOf="@+id/editTextTextEmailAddress"
+                app:layout_constraintStart_toStartOf="@+id/username"
                 app:layout_constraintTop_toBottomOf="@+id/Telephone" />
 
             <EditText
-                android:id="@+id/EmailAddress"
+                android:id="@+id/email_address"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -267,8 +267,8 @@
                 android:text="@string/surname"
                 android:textColor="#8F92A1"
                 android:textSize="12sp"
-                app:layout_constraintStart_toStartOf="@+id/editTextTextEmailAddress"
-                app:layout_constraintTop_toBottomOf="@+id/editTextTextEmailAddress" />
+                app:layout_constraintStart_toStartOf="@+id/username"
+                app:layout_constraintTop_toBottomOf="@+id/username" />
 
             <EditText
                 android:id="@+id/Surname"
@@ -300,7 +300,7 @@
                 android:text="@string/telephone"
                 android:textColor="#8F92A1"
                 android:textSize="12sp"
-                app:layout_constraintStart_toStartOf="@+id/editTextTextEmailAddress"
+                app:layout_constraintStart_toStartOf="@+id/username"
                 app:layout_constraintTop_toBottomOf="@+id/Surname" />
 
             <EditText
@@ -320,7 +320,7 @@
                 android:minHeight="48dp"
                 android:textColorHint="@color/black"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/telephone_title" />
 
@@ -335,7 +335,7 @@
                 android:textColor="#8F92A1"
                 android:textSize="12sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/EmailAddress" />
+                app:layout_constraintTop_toBottomOf="@+id/email_address" />
 
             <EditText
                 android:id="@+id/editTextPassword"
@@ -359,11 +359,12 @@
                 app:layout_constraintTop_toBottomOf="@+id/pass_title" />
 
             <CheckBox
-                android:id="@+id/checkBox_agrre_terms"
+                android:id="@+id/checkbox_agrre_terms"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:text=""
+                android:focusable="true"
                 app:layout_constraintStart_toStartOf="@+id/editTextPassword"
                 app:layout_constraintTop_toBottomOf="@+id/editTextPassword" />
 
@@ -376,8 +377,8 @@
                 android:fontFamily="@font/dm_sans_medium"
                 android:text="@string/by_creating_an_account_you_agree_to_our"
                 android:textSize="14sp"
-                app:layout_constraintStart_toEndOf="@+id/checkBox_agrre_terms"
-                app:layout_constraintTop_toTopOf="@+id/checkBox_agrre_terms" />
+                app:layout_constraintStart_toEndOf="@+id/checkbox_agrre_terms"
+                app:layout_constraintTop_toTopOf="@+id/checkbox_agrre_terms" />
 
             <TextView
                 android:id="@+id/Term_link"

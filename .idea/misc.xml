@@ -29,7 +29,7 @@
         <entry key="authentication/src/main/res/layout/fragment_login.xml" value="0.25" />
         <entry key="authentication/src/main/res/layout/fragment_onboarding.xml" value="0.22" />
         <entry key="authentication/src/main/res/layout/fragment_registrate.xml" value="0.35625" />
-        <entry key="authentication/src/main/res/layout/fragment_singn_up.xml" value="0.25" />
+        <entry key="authentication/src/main/res/layout/fragment_singn_up.xml" value="0.33" />
       </map>
     </option>
   </component>

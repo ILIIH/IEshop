@@ -2,7 +2,6 @@ package com.example.authentication.fragment
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,7 +13,6 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.authentication.R
 import com.example.authentication.databinding.FragmentLoginBinding
-import com.example.authentication.di.AuthDepsProvider
 import com.example.authentication.fragment.viewModel.authComponentViewModel
 import com.example.authentication.fragment.viewModel.authViewModel
 import com.example.authentication.fragment.viewModel.authViewModelFactory
@@ -49,10 +47,7 @@ class LoginFragment : Fragment() {
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        if (requireActivity() is AuthDepsProvider) {
-            Log.i("AppProv", "in Fragment is AuthDepsProvider")
-        }
-        componentViewModel.authComponent.inject(this)
+        componentViewModel.authComponent.injectLogin(this)
     }
 
     override fun onCreateView(

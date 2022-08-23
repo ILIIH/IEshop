@@ -3,6 +3,7 @@ package com.example.ieshop.di
 import android.app.Application
 import com.example.authentication.di.authDeps
 import com.example.core.data.repository.repository
+import com.example.ieshop.framework.repository.shopRepository
 import com.example.ieshop.framework.repository.shopRepositoryLocal
 import dagger.*
 import javax.inject.Scope
@@ -23,7 +24,7 @@ interface AppComponent : authDeps {
 @Module
 abstract class RepoModule {
     @Binds
-    abstract fun bindRepo(shopRepository: shopRepositoryLocal): repository
+    abstract fun bindRepo(shopRepository: shopRepository): repository
 }
 
 @Scope
