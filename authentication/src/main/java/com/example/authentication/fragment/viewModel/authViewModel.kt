@@ -43,28 +43,26 @@ class authViewModel @Inject constructor(
         country: String
     ) {
         val loginRegex = Regex(pattern = "^(?=[a-zA-Z0-9._]{8,20}\$)(?!.*[_.]{2})[^_.].*[^_.]\$")
-        if (!loginRegex.matches(login)) {
-            loginState.postValue(UIState.Error(ErrorEntity.WrongCredentialsLogin))
-            return
-        }
         val emailRegex = Regex(pattern = "^[A-Za-z](.*)([@]{1})(.{1,})(\\\\.)(.{1,})")
-        if (!loginRegex.matches(login)) {
-            loginState.postValue(UIState.Error(ErrorEntity.WrongCredentialsLogin))
-            return
-        }
-        registrateUser.execute(
-            user(
-                name = name,
-                surname = surname,
-                login = login,
-                email = email,
-                photo = photo,
-                telephone = telephone,
-                lotsList = lotsList,
-                purchaseList = purchaseList,
-                password = password,
-                country = country
-            )
-        )
+
+        if (!loginRegex.matches(login)) loginState.postValue(UIState.Error(ErrorEntity.WrongCredentialsLogin))
+        else if (!emailRegex.matches(email)) loginState.postValue(UIState.Error(ErrorEntity.WrongCredentialsLogin))
+        else
+            viewModelScope.launch {
+                registrateUser.execute(
+                    user(
+                        name = name,
+                        surname = surname,
+                        login = login,
+                        email = email,
+                        photo = photo,
+                        telephone = telephone,
+                        lotsList = lotsList,
+                        purchaseList = purchaseList,
+                        password = password,
+                        country = country
+                    )
+                )
+            }
     }
 }

@@ -1,11 +1,13 @@
 package com.example.core.usecases
 
 import com.example.core.data.repository.repository
+import com.example.core.domain.error.UIState
 import com.example.core.domain.user
+import kotlinx.coroutines.flow.Flow
 
 class registrate constructor(private val repository: repository) {
 
-    fun execute(user: user): Boolean {
+    suspend fun execute(user: user): Flow<UIState<user>> {
         val encryptedPassword = StringBuffer()
         for (item in user.password) {
             encryptedPassword.append(item.code + 11)

@@ -1,6 +1,7 @@
 package com.example.authentication.fragment
 
 import android.content.Context
+import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -20,8 +21,7 @@ import com.example.core_ui.LoadingFragment
 import dagger.Lazy
 import javax.inject.Inject
 
-
-class RegistrateFragment : Fragment() , AdapterView.OnItemClickListener{
+class RegistrateFragment : Fragment(), AdapterView.OnItemClickListener {
     @Inject
     internal lateinit var authViewModelFactory: Lazy<authViewModelFactory>
 
@@ -43,7 +43,7 @@ class RegistrateFragment : Fragment() , AdapterView.OnItemClickListener{
         "London, United Kingdom", "Washington, D.C, USA",
         "Ankara, Turkey"
     )
-    val currentCountry: String = "Tirana, Albania"
+    var currentCountry: String = "Tirana, Albania"
     override fun onAttach(context: Context) {
         super.onAttach(context)
         componentViewModel.authComponent.injectRegistrate(this)
@@ -55,6 +55,7 @@ class RegistrateFragment : Fragment() , AdapterView.OnItemClickListener{
         savedInstanceState: Bundle?
     ): View {
         val view = FragmentSingnUpBinding.inflate(layoutInflater, container, false)
+        val checkBox = view.checkboxAgrreTerms
 
         // prepearing spiner
         (view.spinner as AutoCompleteTextView).setText("Kabul, Afghanistan")
@@ -62,11 +63,14 @@ class RegistrateFragment : Fragment() , AdapterView.OnItemClickListener{
             ArrayAdapter<String>(requireActivity().applicationContext, android.R.layout.simple_spinner_item, countries)
         (view.spinner as AutoCompleteTextView).setAdapter(spinnerArrayAdapter)
 
+        checkBox.setOnClickListener {
+            checkBox.setBackgroundColor(Color.BLACK)
+        }
 
         view.buttonSignInFacebookText.setOnClickListener { }
         view.signInButton.setOnClickListener { findNavController().navigate(R.id.change_to_registrate) }
         view.signUpButton.setOnClickListener {
-            if(view.checkBoxAgrreTerms.isChecked){
+            if (view.checkboxAgrreTerms.isChecked) {
                 authViewModel.registrate(
                     view.username.text.toString(),
                     view.Surname.text.toString(),
@@ -78,18 +82,19 @@ class RegistrateFragment : Fragment() , AdapterView.OnItemClickListener{
                     view.editTextPassword.text.toString(),
                     view.emailAddress.text.toString(),
                     currentCountry
-                    )
+                )
 
-                //findNavController().navigate(R.id.confirm_phone)
+                // findNavController().navigate(R.id.confirm_phone)
+            } else {
+                checkBox.requestFocus()
+                checkBox.setBackgroundColor(Color.RED)
             }
-            else {
-               // TODO("Сделать подсвечивание красным в случае если не был нажат чекбокс согадасия с правилами ")
-            }
-             }
+        }
+
         return view.root
     }
 
     override fun onItemClick(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-        = p0?.getItemAtPosition(p2).toString()
+        currentCountry = p0?.getItemAtPosition(p2).toString()
     }
 }

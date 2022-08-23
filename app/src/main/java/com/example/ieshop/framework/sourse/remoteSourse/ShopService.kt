@@ -1,5 +1,6 @@
 package com.example.ieshop.framework.sourse.remoteSourse
 
+import com.example.core.domain.user
 import com.example.ieshop.framework.sourse.entities.Product
 import com.example.ieshop.framework.sourse.entities.Purchases
 import com.example.ieshop.framework.sourse.entities.User
@@ -38,7 +39,7 @@ interface ShopService {
         @Body telephone: String,
         @Body password: String,
         @Body country: String
-    ): Response<Boolean>
+    ): Response<user>
 
     @POST("/add/purchases")
     fun addPurchases(

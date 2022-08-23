@@ -7,19 +7,23 @@ import kotlinx.coroutines.flow.*
 inline fun <ResultType, RequestType> networkBoundResource(
     crossinline query: () -> Flow<ResultType>,
     crossinline fetch: suspend () -> RequestType,
-    crossinline saveFetchResult: suspend (RequestType) -> Unit,
-    crossinline shouldFetch: (ResultType) -> Boolean = { true }
+    crossinline saveFetchResult: suspend (RequestType) -> Unit = {},
+    shouldFetch: Boolean = true
 ) = flow {
     val data = query().first()
 
-    val flow = if (shouldFetch(data)) {
+    val flow = if (shouldFetch) {
         emit(UIState.Loading(data))
 
         try {
             saveFetchResult(fetch())
             query().map { UIState.Success(it) }
         } catch (throwable: Throwable) {
-            query().map { UIState.Error(ErrorEntity.Network, it) }
+            val error = when (throwable.message) {
+                "RepeatCredentials" -> ErrorEntity.RepeatCredentials
+                else -> ErrorEntity.DatabaceError
+            }
+            query().map { UIState.Error(error, it) }
         }
     } else {
         query().map { UIState.Success(it) }

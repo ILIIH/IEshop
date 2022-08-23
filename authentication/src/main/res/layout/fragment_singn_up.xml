@@ -335,7 +335,7 @@
                 android:textColor="#8F92A1"
                 android:textSize="12sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/EmailAddress" />
+                app:layout_constraintTop_toBottomOf="@+id/email_address" />
 
             <EditText
                 android:id="@+id/editTextPassword"
@@ -359,11 +359,12 @@
                 app:layout_constraintTop_toBottomOf="@+id/pass_title" />
 
             <CheckBox
-                android:id="@+id/checkBox_agrre_terms"
+                android:id="@+id/checkbox_agrre_terms"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:text=""
+                android:focusable="true"
                 app:layout_constraintStart_toStartOf="@+id/editTextPassword"
                 app:layout_constraintTop_toBottomOf="@+id/editTextPassword" />
 
@@ -376,8 +377,8 @@
                 android:fontFamily="@font/dm_sans_medium"
                 android:text="@string/by_creating_an_account_you_agree_to_our"
                 android:textSize="14sp"
-                app:layout_constraintStart_toEndOf="@+id/checkBox_agrre_terms"
-                app:layout_constraintTop_toTopOf="@+id/checkBox_agrre_terms" />
+                app:layout_constraintStart_toEndOf="@+id/checkbox_agrre_terms"
+                app:layout_constraintTop_toTopOf="@+id/checkbox_agrre_terms" />
 
             <TextView
                 android:id="@+id/Term_link"
