@@ -4,7 +4,6 @@ import android.app.Application
 import com.example.authentication.di.authDeps
 import com.example.core.data.repository.repository
 import com.example.ieshop.framework.repository.shopRepository
-import com.example.ieshop.framework.repository.shopRepositoryLocal
 import dagger.*
 import javax.inject.Scope
 

@@ -11,5 +11,5 @@ data class Purchases(
     val buyData: String,
     val photos: List<String>,
     val ownerLogin: String,
-    @PrimaryKey(autoGenerate = true) val id: Int
+        @PrimaryKey(autoGenerate = true) val id: Int
 )

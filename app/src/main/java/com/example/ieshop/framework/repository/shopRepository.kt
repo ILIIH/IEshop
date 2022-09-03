@@ -39,12 +39,14 @@ class shopRepository @Inject constructor(
                 user.password,
                 user.country
             )
-        }, shouldFetch = false
+        },
+        saveFetchResult = { user ->
+            user.body()?.asUserDomain()?.let { userManager.login(it) }
+        }
     )
-        .stateIn(scope = CoroutineScope(Dispatchers.IO))
 
     override suspend fun getUser(login: String): Flow<UIState<user>> {
-        TODO()
+        TODO("Not yet implemented")
     }
 
     override suspend fun login(login: String, password: String) = networkBoundResource(
@@ -58,7 +60,7 @@ class shopRepository @Inject constructor(
             user.body()?.first()?.let { userManager.login(it) }
         }
 
-    ).stateIn(scope = CoroutineScope(Dispatchers.IO))
+    )
 
     override fun getUsersByPage(page: Int): List<user> {
         TODO("Not yet implemented")
