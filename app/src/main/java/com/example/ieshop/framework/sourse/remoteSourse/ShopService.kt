@@ -15,22 +15,13 @@ import retrofit2.http.Query
 
 interface ShopService {
 
-    @GET("/product")
-    fun getProductPerPage(@Query("page") page: Int, @Query("per_page") per_page: Int): Response<List<Product>>
+    @GET("/api/get/user/by/login/")
+    fun getUserInfo(@Query("login") login: String): Response<List<User>>
 
-    @GET("/{login}/user/info")
-    fun getUserInfo(@Path("login") login: String): Response<List<User>>
-
-    @POST("/{login}/user/purchase")
-    fun countOfUser(@Body login: String): Response<List<Purchases>>
-
-    @GET("/{login}/user/purchase")
-    fun getPurchases(@Path("login") login: String): Response<List<Purchases>>
-
-    @POST("/login")
+    @POST("/api/login/")
     fun login(@Body login: String, @Body password: String): Response<Boolean>
 
-    @POST("/registrate")
+    @POST("/api/registrate/user")
     fun registrate(
         @Body name: String,
         @Body surname: String,
@@ -41,7 +32,7 @@ interface ShopService {
         @Body country: String
     ): Response<user>
 
-    @POST("/add/purchases")
+    @POST("")
     fun addPurchases(
         @Body name: String,
         @Body cost: Int,
@@ -51,7 +42,7 @@ interface ShopService {
         @Body ownerLogin: String
     ): Response<Boolean>
 
-    @POST("/add/product")
+    @POST("")
     fun addProduct(
         @Body name: String,
         @Body cost: Int,
@@ -61,7 +52,7 @@ interface ShopService {
         @Body ownerLogin: String
     ): Response<Boolean>
 
-    @DELETE("/delete/product")
+    @DELETE("")
     fun deleteProduct(
         @Body name: String,
         @Body cost: Int,
@@ -71,7 +62,7 @@ interface ShopService {
         @Body ownerLogin: String
     ): Response<Boolean>
 
-    @PUT("/user/change")
+    @PUT("")
     fun changeUserInfo(
         @Body username: String,
         @Body name: String,
@@ -81,4 +72,15 @@ interface ShopService {
         @Body telephone: String,
         @Body password: String
     ): Response<Boolean>
+
+    @GET("/product")
+    fun getProductPerPage(@Query("page") page: Int, @Query("per_page") per_page: Int): Response<List<Product>>
+
+
+
+    @POST("/{login}/user/purchase")
+    fun countOfUser(@Body login: String): Response<List<Purchases>>
+
+    @GET("/{login}/user/purchase")
+    fun getPurchases(@Path("login") login: String): Response<List<Purchases>>
 }
