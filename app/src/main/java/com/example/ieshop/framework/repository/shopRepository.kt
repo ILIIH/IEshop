@@ -1,9 +1,11 @@
 package com.example.ieshop.framework.repository
 
 import com.example.core.data.repository.repository
+import com.example.core.domain.error.ErrorEntity
 import com.example.core.domain.error.UIState
 import com.example.core.domain.product
 import com.example.core.domain.user
+import com.example.ieshop.framework.sourse.entities.User
 import com.example.ieshop.framework.sourse.localSourse.LocalDatabase
 import com.example.ieshop.framework.sourse.remoteSourse.ShopService
 import com.example.ieshop.utils.asUserData
@@ -14,7 +16,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.*
 import javax.inject.Inject
 
-class shopRepository @Inject constructor(
+open class shopRepository @Inject constructor(
     val localDB: LocalDatabase,
     val remoteDB: ShopService,
     val userManager: userManager
@@ -26,7 +28,7 @@ class shopRepository @Inject constructor(
                 if (localDB.userDao().getUserInfo(user.login).isNotEmpty()) {
                     localDB.userDao().registrate(user.asUserDomain())
                     emit(user)
-                } else throw Exception("RepeatCredentials")
+                } else UIState.Error(ErrorEntity.RepeatCredentials,null)
             }
         },
         fetch = {
@@ -46,7 +48,7 @@ class shopRepository @Inject constructor(
     )
 
     override suspend fun getUser(login: String): Flow<UIState<user>> {
-        TODO("Not yet implemented")
+        return flow { emit(UIState.Success(user("-","-","-","-","-","-", listOf(), listOf(),"-","-" ))) }
     }
 
     override suspend fun login(login: String, password: String) = networkBoundResource(
@@ -63,10 +65,10 @@ class shopRepository @Inject constructor(
     )
 
     override fun getUsersByPage(page: Int): List<user> {
-        TODO("Not yet implemented")
+        return listOf()
     }
 
     override fun getPurchaseByPage(page: Int): List<product> {
-        TODO("Not yet implemented")
+        return listOf()
     }
 }

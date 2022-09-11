@@ -15,5 +15,5 @@ fun user.asUserDomain(): User = User(
 )
 
 fun User.asUserData(): user = user(
-    name, surname,login,email,photo,telephone,null,null,password,country
+    name, surname,login,email,photo,telephone, listOf(), listOf(),password,country
 )
