@@ -1,5 +1,6 @@
 package com.example.ieshop.framework.repository
 
+import android.util.Log
 import com.example.core.data.repository.repository
 import com.example.core.domain.error.ErrorEntity
 import com.example.core.domain.error.UIState
@@ -13,7 +14,9 @@ import com.example.ieshop.utils.asUserDomain
 import com.example.ieshop.utils.networkBoundResource
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 open class shopRepository @Inject constructor(
@@ -24,26 +27,42 @@ open class shopRepository @Inject constructor(
 
     override suspend fun registrate(user: user) = networkBoundResource(
         query = {
+            Log.i("RepoLog", "Inside query")
             flow {
-                if (localDB.userDao().getUserInfo(user.login).isNotEmpty()) {
-                    localDB.userDao().registrate(user.asUserDomain())
-                    emit(user)
-                } else UIState.Error(ErrorEntity.RepeatCredentials,null)
-            }
+                val resQuery = localDB.userDao().getUserInfo(user.login)
+                if(!resQuery.isEmpty()) emit(resQuery.first().asUserData())
+                else emit(user("-","-","-","-","-","-", listOf(), listOf(),"-","-"))
+            }.flowOn(Dispatchers.IO)
         },
         fetch = {
-            remoteDB.registrate(
-                user.name,
-                user.surname,
-                user.login,
-                user.photo,
-                user.telephone,
-                user.password,
-                user.country
-            )
+
+      withContext(Dispatchers.IO){
+          Log.i("RepoLog", "Inside fetch")
+
+          val res = localDB.userDao().getUserInfo(user.login)
+          Log.i("RepoLog", "Inside FLOW query res = ${res}")
+
+          if (res.isEmpty()) {
+
+              remoteDB.registrate(user.name,user.surname,user.email,user.login,user.photo,
+                  user.telephone,user.password,user.country)
+
+          } else throw  Exception("RepeatCredentials");
+      }
+
         },
         saveFetchResult = { user ->
-            user.body()?.asUserDomain()?.let { userManager.login(it) }
+            withContext(Dispatchers.IO) {
+                Log.i("RepoLog", "Inside saveFetchResult user : ${user.body()}")
+                if(user.body()!=null) {
+                    localDB.userDao().registrate(user.body()!!)
+                    Log.i("RepoLog", "Inside fetch query emit user ${user} ")
+                    user.body()?.let { userManager.login(it) }
+                }
+                else{
+                    throw  Exception("Sever error");
+                }
+            }
         }
     )
 

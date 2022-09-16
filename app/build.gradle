@@ -6,7 +6,9 @@ apply plugin: 'kotlin-kapt'
 
 android {
     compileSdk 32
-
+    packagingOptions {
+        resources.excludes.add("META-INF/*")
+    }
     defaultConfig {
         applicationId "com.example.ieshop"
         minSdk 21
