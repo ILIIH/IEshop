@@ -1,11 +1,14 @@
 package com.example.authentication.fragment
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.authentication.R
+import com.facebook.AccessToken
+import com.facebook.GraphRequest
 
 class ConfirmationFragment : Fragment() {
 
@@ -14,6 +17,8 @@ class ConfirmationFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
+
 
         return inflater.inflate(R.layout.fragment_confirmation, container, false)
     }

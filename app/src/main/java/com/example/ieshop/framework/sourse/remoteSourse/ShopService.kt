@@ -1,19 +1,20 @@
 package com.example.ieshop.framework.sourse.remoteSourse
 
-import com.example.core.domain.user
 import com.example.ieshop.framework.sourse.entities.Product
 import com.example.ieshop.framework.sourse.entities.Purchases
-import com.example.ieshop.framework.sourse.entities.User
+import com.example.ieshop.framework.sourse.entities.UserDatabase
+import com.example.ieshop.framework.sourse.entities.UserNetwork
 import retrofit2.Response
 import retrofit2.http.*
 
 interface ShopService {
 
     @GET("/api/get/user/by/login/")
-    fun getUserInfo(@Query("login") login: String): Response<List<User>>
+    fun getUserInfo(@Query("login") login: String): Response<List<UserDatabase>>
 
+    @FormUrlEncoded
     @POST("/api/login/")
-    suspend fun login(@Body login: String, @Body password: String): Response<Boolean>
+    suspend fun login(@Field("Login") login: String, @Field("Password") password: String): Response<List<UserNetwork>>
 
     @FormUrlEncoded
     @POST("/api/registrate/user")
@@ -26,7 +27,7 @@ interface ShopService {
         @Field("Telephone") telephone:String,
         @Field("Password") pass:String,
         @Field("Country") country:String,
-    ): Response<User>
+    ): Response<UserNetwork>
 
     @POST("")
     fun addPurchases(

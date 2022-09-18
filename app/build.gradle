@@ -50,6 +50,9 @@ android {
 dependencies {
     implementation project(path: ':core')
     implementation project(path: ':authentication')
+    implementation project(path: ':main')
+
+    implementation 'nl.joery.animatedbottombar:library:1.1.0'
 
     implementation "com.google.android.material:material:$material_version"
     implementation 'androidx.core:core-ktx:1.8.0'

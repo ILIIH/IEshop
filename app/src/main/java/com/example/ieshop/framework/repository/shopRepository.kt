@@ -2,19 +2,15 @@ package com.example.ieshop.framework.repository
 
 import android.util.Log
 import com.example.core.data.repository.repository
-import com.example.core.domain.error.ErrorEntity
 import com.example.core.domain.error.UIState
 import com.example.core.domain.product
 import com.example.core.domain.user
-import com.example.ieshop.framework.sourse.entities.User
 import com.example.ieshop.framework.sourse.localSourse.LocalDatabase
 import com.example.ieshop.framework.sourse.remoteSourse.ShopService
 import com.example.ieshop.utils.asUserData
-import com.example.ieshop.utils.asUserDomain
+import com.example.ieshop.utils.asUserDatabace
 import com.example.ieshop.utils.networkBoundResource
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
@@ -55,9 +51,10 @@ open class shopRepository @Inject constructor(
             withContext(Dispatchers.IO) {
                 Log.i("RepoLog", "Inside saveFetchResult user : ${user.body()}")
                 if(user.body()!=null) {
-                    localDB.userDao().registrate(user.body()!!)
+
+                    localDB.userDao().registrate(user.body()!!.asUserDatabace())
                     Log.i("RepoLog", "Inside fetch query emit user ${user} ")
-                    user.body()?.let { userManager.login(it) }
+                    user.body()?.let { userManager.login(it.asUserData()) }
                 }
                 else{
                     throw  Exception("Sever error");
@@ -72,13 +69,28 @@ open class shopRepository @Inject constructor(
 
     override suspend fun login(login: String, password: String) = networkBoundResource(
         query = {
-            localDB.userDao().getUserInfo(login).asFlow().map { it.asUserData() }
+            Log.i("RepoLog", "PASSWORD =  $password")
+            flow {
+                Log.i("RepoLog", "Inside login query ")
+                val res =  localDB.userDao().getUserInfo(login)
+                Log.i("RepoLog", "Inside login query $res")
+
+                if(res.isEmpty())emit(user("-","-","-","-","-","-", listOf(), listOf(),"-","-"))
+                else emit(res.first().asUserData())
+            }.flowOn(Dispatchers.IO)
+
         },
         fetch = {
-            remoteDB.getUserInfo(login)
+            Log.i("RepoLog", "Inside login fetch ")
+
+          remoteDB.login(login,password)
         },
         saveFetchResult = { user ->
-            user.body()?.first()?.let { userManager.login(it) }
+            Log.i("RepoLog", "Inside login saveFetchResult user =  "+ user.body())
+            if(user.body()!=null) {
+                user.body()?.let { userManager.login(it.first().asUserData()) }
+            }
+            else throw  Exception("Sever error");
         }
 
     )

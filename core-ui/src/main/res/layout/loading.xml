@@ -10,7 +10,7 @@
     android:foregroundGravity="center"
     android:gravity="center"
     android:orientation="horizontal"
-    tools:context=".LoadingFragment">
+    tools:context=".screens.LoadingFragment">
 
     <ProgressBar
         android:id="@+id/ProgressBar01"
