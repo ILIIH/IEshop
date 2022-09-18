@@ -7,8 +7,8 @@ data class user(
     val email: String,
     val photo: String,
     val telephone: String,
-    val lotsList: List<product>?,
-    val purchaseList: List<product>?,
+    val lotsList: List<product>,
+    val purchaseList: List<product>,
     val password: String,
     val country: String
 )

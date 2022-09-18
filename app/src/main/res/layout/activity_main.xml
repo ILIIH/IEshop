@@ -13,4 +13,18 @@
         android:layout_height="match_parent"
         app:defaultNavHost="true"
         app:navGraph="@navigation/navigation_graph" />
+
+    <nl.joery.animatedbottombar.AnimatedBottomBar
+        android:layout_gravity="bottom"
+        android:id="@+id/bottom_bar"
+        android:background="#FFF"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:abb_selectedTabType="text"
+        app:abb_indicatorAppearance="round"
+        app:abb_indicatorMargin="16dp"
+        app:abb_indicatorHeight="4dp"
+        app:abb_tabs="@menu/bottom_navigation_menu"
+        app:abb_selectedIndex="1" />
+
 </FrameLayout>
