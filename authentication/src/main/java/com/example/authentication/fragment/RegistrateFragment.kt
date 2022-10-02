@@ -87,10 +87,11 @@ class RegistrateFragment : Fragment() {
                 }
                 is UIState.Success -> {
                     if(loadingFragment.dialog!=null)loadingFragment.dismiss()
-                    findNavController().navigate(R.id.confirmation)
-                    Toast.makeText(context,"Sucess",Toast.LENGTH_SHORT).show()
+                    Log.i("RepoLog","Status = " + status.data!!)
+                    findNavController().navigate(RegistrateFragmentDirections.confirmPhone(status.data!!))
                 }
                 is UIState.Loading ->{
+                    if(loadingFragment.dialog!=null)
                    loadingFragment.show(requireActivity().supportFragmentManager, LoadingFragment.TAG)
                 }
             }
@@ -103,7 +104,7 @@ class RegistrateFragment : Fragment() {
             ArrayAdapter<String>(requireActivity().applicationContext, android.R.layout.simple_spinner_item, countries)
         (view.spinner as AutoCompleteTextView).setAdapter(spinnerArrayAdapter)
 
-        spiner.setOnItemClickListener { adapterView, view, i, l ->
+        spiner.setOnItemClickListener { adapterView, _, i, _ ->
             currentCountry = adapterView.getItemAtPosition(i).toString()
         }
 
@@ -175,9 +176,12 @@ class RegistrateFragment : Fragment() {
 
         }
 
+        ///////////////////////
+
+
         /////////////////////////
 
-        view.signInButton.setOnClickListener { findNavController().navigate(com.example.authentication.R.id.change_to_registrate) }
+        view.signInButton.setOnClickListener { findNavController().navigate(R.id.change_to_registrate) }
         view.signUpButton.setOnClickListener {
             if (view.checkboxAgrreTerms.isChecked) {
                 authViewModel.registrate(

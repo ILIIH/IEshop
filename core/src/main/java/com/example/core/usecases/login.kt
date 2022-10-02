@@ -8,18 +8,21 @@ import com.example.core.domain.user
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
-import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.withContext
 
-open class login constructor(private val repository: repository) {
 
-    open suspend fun execute(user: user): Flow<UIState<user>> {
+class login constructor(private val repository: repository) {
+
+    suspend fun execute(user: user, needEncription: Boolean=true ): Flow<UIState<user>> {
 
         return withContext(Dispatchers.IO) {
+
             val encryptedPassword = StringBuffer()
-            for (item in user.password) {
-                encryptedPassword.append(item.code + 11)
-            }
+            if(needEncription)
+                for (item in user.password) {
+                    encryptedPassword.append(item.code + 11)
+                }
+            else encryptedPassword.append(user.password)
             return@withContext repository.login(
                 user.login,
                 encryptedPassword.toString()

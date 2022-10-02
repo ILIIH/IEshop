@@ -1,8 +1,11 @@
+
 pluginManagement {
     repositories {
         gradlePluginPortal()
         google()
         mavenCentral()
+        maven { url 'https://jitpack.io' }
+
     }
 }
 dependencyResolutionManagement {
@@ -10,8 +13,11 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
+        maven { url 'https://jitpack.io' }
+
     }
 }
+
 rootProject.name = "IEshop"
 include ':app'
 include ':core'

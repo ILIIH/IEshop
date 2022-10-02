@@ -7,7 +7,7 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Update
 import com.example.ieshop.framework.sourse.entities.Product
-import com.example.ieshop.framework.sourse.entities.Purchases
+import com.example.ieshop.framework.sourse.entities.PurchasesDatabase
 import com.example.ieshop.framework.sourse.entities.UserDatabase
 
 @Dao
@@ -18,8 +18,8 @@ interface ShopDAO {
     @Query("SELECT * FROM UserDatabase WHERE Login = :log")
     fun getUserInfo(log: String): List<UserDatabase>
 
-    @Query("SELECT * FROM Purchases WHERE ownerLogin = :login")
-    fun getPurchases(login: String): List<Purchases>
+    @Query("SELECT * FROM PurchasesDatabase WHERE ownerLogin = :login")
+    fun getPurchases(login: String): List<PurchasesDatabase>
 
     @Query("SELECT COUNT(*) FROM UserDatabase WHERE Login = :login AND Password = :password")
     fun login(login: String, password: String): Int
@@ -27,11 +27,11 @@ interface ShopDAO {
     @Query("SELECT COUNT(:login) FROM UserDatabase WHERE Login = :login ")
     fun countOfUser(login: String): Int
 
-    @Insert(onConflict = OnConflictStrategy.ABORT)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun registrate(user: UserDatabase)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun addPurchases(purchases: Purchases)
+    fun addPurchases(purchases: PurchasesDatabase)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun addProduct(product: Product)

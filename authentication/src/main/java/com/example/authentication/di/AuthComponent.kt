@@ -2,11 +2,14 @@ package com.example.authentication.di
 
 import android.app.Application
 import android.content.Context
+import com.example.authentication.fragment.ConfirmationFragment
 import com.example.authentication.fragment.LoginFragment
 import com.example.authentication.fragment.RegistrateFragment
 import com.example.core.data.repository.repository
+import com.example.core.usecases.getUser
 import com.example.core.usecases.login
 import com.example.core.usecases.registrate
+import com.example.core.usecases.validateEmail
 import dagger.Component
 import dagger.Module
 import dagger.Provides
@@ -24,6 +27,7 @@ interface AuthComponent {
 
     fun injectLogin(login: LoginFragment)
     fun injectRegistrate(registrate: RegistrateFragment)
+    fun injectConfirmation(confirm: ConfirmationFragment)
 
     @Component.Builder
     interface Builder {
@@ -34,13 +38,14 @@ interface AuthComponent {
 @Module
 internal class authModule {
     @Provides
-    fun provideLoginUsecase(repository: repository): login {
-        return login(repository)
-    }
+    fun provideLoginUsecase(repository: repository) = login(repository)
+
     @Provides
-    fun provideRegistrateUsecase(repository: repository): registrate {
-        return registrate(repository)
-    }
+    fun provideRegistrateUsecase(repository: repository) =  registrate(repository)
+
+    @Provides
+    fun provideAuthorizeUsecase(repository: repository) = validateEmail(repository)
+
 }
 
 interface authDeps {
