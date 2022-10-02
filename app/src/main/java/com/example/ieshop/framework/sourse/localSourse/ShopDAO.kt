@@ -6,20 +6,17 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Update
-import com.example.ieshop.framework.sourse.entities.Product
-import com.example.ieshop.framework.sourse.entities.PurchasesDatabase
+import com.example.ieshop.framework.sourse.entities.ProductDatabase
 import com.example.ieshop.framework.sourse.entities.UserDatabase
 
 @Dao
 interface ShopDAO {
-    @Query("SELECT * FROM Product LIMIT :page, :per_page")
-    fun getProductPerPage(page: Int, per_page: Int): List<Product>
+    @Query("SELECT * FROM ProductDatabase LIMIT :page, :per_page")
+    fun getProductPerPage(page: Int, per_page: Int): List<ProductDatabase>
 
     @Query("SELECT * FROM UserDatabase WHERE Login = :log")
     fun getUserInfo(log: String): List<UserDatabase>
 
-    @Query("SELECT * FROM PurchasesDatabase WHERE ownerLogin = :login")
-    fun getPurchases(login: String): List<PurchasesDatabase>
 
     @Query("SELECT COUNT(*) FROM UserDatabase WHERE Login = :login AND Password = :password")
     fun login(login: String, password: String): Int
@@ -30,14 +27,12 @@ interface ShopDAO {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun registrate(user: UserDatabase)
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun addPurchases(purchases: PurchasesDatabase)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun addProduct(product: Product)
+    fun addProduct(product: ProductDatabase)
 
     @Delete
-    fun deleteProduct(product: Product)
+    fun deleteProduct(product: ProductDatabase)
 
     @Update
     fun changeUserInfo(user: UserDatabase)
