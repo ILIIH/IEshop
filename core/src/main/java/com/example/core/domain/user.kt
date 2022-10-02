@@ -1,4 +1,5 @@
 package com.example.core.domain
+import java.io.Serializable
 
 data class user(
     val name: String,
@@ -7,8 +8,8 @@ data class user(
     val email: String,
     val photo: String,
     val telephone: String,
-    val lotsList: List<product>?,
-    val purchaseList: List<product>?,
+    val lotsList: List<product>,
+    val purchaseList: List<product>,
     val password: String,
     val country: String
-)
+) : Serializable

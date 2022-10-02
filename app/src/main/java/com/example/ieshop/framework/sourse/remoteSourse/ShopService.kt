@@ -1,46 +1,37 @@
 package com.example.ieshop.framework.sourse.remoteSourse
 
 import com.example.ieshop.framework.sourse.entities.Product
-import com.example.ieshop.framework.sourse.entities.Purchases
-import com.example.ieshop.framework.sourse.entities.User
+import com.example.ieshop.framework.sourse.entities.PurchasesDatabase
+import com.example.ieshop.framework.sourse.entities.UserDatabase
+import com.example.ieshop.framework.sourse.entities.UserNetwork
 import retrofit2.Response
-import retrofit2.http.Body
-import retrofit2.http.DELETE
-import retrofit2.http.GET
-import retrofit2.http.POST
-import retrofit2.http.PUT
-import retrofit2.http.Path
-import retrofit2.http.Query
+import retrofit2.http.*
 
 interface ShopService {
+    @GET("/api/sendEmail/{email}/{code}")
+    suspend fun authorizeEmail(@Path("email") email:String,@Path("code") code:String): Response<Boolean>
 
-    @GET("/product")
-    fun getProductPerPage(@Query("page") page: Int, @Query("per_page") per_page: Int): Response<List<Product>>
+    @GET("/api/get/user/by/login/")
+    fun getUserInfo(@Query("login") login: String): Response<List<UserDatabase>>
 
-    @GET("/{login}/user/info")
-    fun getUserInfo(@Path("login") login: String): Response<List<User>>
+    @FormUrlEncoded
+    @POST("/api/login/")
+    suspend fun login(@Field("Login") login: String, @Field("Password") password: String): Response<List<UserNetwork>>
 
-    @POST("/{login}/user/purchase")
-    fun countOfUser(@Body login: String): Response<List<Purchases>>
+    @FormUrlEncoded
+    @POST("/api/registrate/user")
+    suspend fun registrate(
+        @Field("Name") name:String,
+        @Field("Surname") surname: String,
+        @Field("Email") email:String,
+        @Field("Login") login:String,
+        @Field("Photo") photo:String,
+        @Field("Telephone") telephone:String,
+        @Field("Password") pass:String,
+        @Field("Country") country:String,
+    ): Response<UserNetwork>
 
-    @GET("/{login}/user/purchase")
-    fun getPurchases(@Path("login") login: String): Response<List<Purchases>>
-
-    @POST("/login")
-    fun login(@Body login: String, @Body password: String): Response<Boolean>
-
-    @POST("/registrate")
-    fun registrate(
-        @Body name: String,
-        @Body surname: String,
-        @Body login: String,
-        @Body photo: String?,
-        @Body telephone: String,
-        @Body password: String,
-        @Body country: String
-    ): Response<Boolean>
-
-    @POST("/add/purchases")
+    @POST("")
     fun addPurchases(
         @Body name: String,
         @Body cost: Int,
@@ -50,7 +41,7 @@ interface ShopService {
         @Body ownerLogin: String
     ): Response<Boolean>
 
-    @POST("/add/product")
+    @POST("")
     fun addProduct(
         @Body name: String,
         @Body cost: Int,
@@ -60,7 +51,7 @@ interface ShopService {
         @Body ownerLogin: String
     ): Response<Boolean>
 
-    @DELETE("/delete/product")
+    @DELETE("")
     fun deleteProduct(
         @Body name: String,
         @Body cost: Int,
@@ -70,7 +61,7 @@ interface ShopService {
         @Body ownerLogin: String
     ): Response<Boolean>
 
-    @PUT("/user/change")
+    @PUT("")
     fun changeUserInfo(
         @Body username: String,
         @Body name: String,
@@ -80,4 +71,15 @@ interface ShopService {
         @Body telephone: String,
         @Body password: String
     ): Response<Boolean>
+
+    @GET("/product")
+    fun getProductPerPage(@Query("page") page: Int, @Query("per_page") per_page: Int): Response<List<Product>>
+
+
+
+    @POST("/{login}/user/purchase")
+    fun countOfUser(@Body login: String): Response<List<PurchasesDatabase>>
+
+    @GET("/{login}/user/purchase")
+    fun getPurchases(@Path("login") login: String): Response<List<PurchasesDatabase>>
 }

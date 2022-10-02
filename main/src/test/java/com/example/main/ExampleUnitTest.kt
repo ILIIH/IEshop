@@ -1,4 +1,4 @@
-package com.example.ieshop
+package com.example.main
 
 import org.junit.Test
 

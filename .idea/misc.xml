@@ -3,19 +3,33 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/ILLIA/IEshop/app/src/main/res/drawable/ic_search.xml" value="0.1125" />
+        <entry key="..\:/ILLIA/IEshop/app/src/main/res/layout/activity_main.xml" value="0.18055555555555555" />
+        <entry key="..\:/ILLIA/IEshop/app/src/main/res/layout/nav_bar_layout.xml" value="0.2536231884057971" />
+        <entry key="..\:/ILLIA/IEshop/app/src/main/res/menu/bottom_navigation_menu.xml" value="0.1" />
+        <entry key="..\:/ILLIA/IEshop/app/src/main/res/menu/head_nav_menu.xml" value="0.25416666666666665" />
         <entry key="..\:/ILLIA/IEshop/authentication/src/main/res/drawable/rounded.xml" value="0.219" />
         <entry key="..\:/ILLIA/IEshop/authentication/src/main/res/font/dm_sans_bold.xml" value="0.1" />
-        <entry key="..\:/ILLIA/IEshop/authentication/src/main/res/layout/fragment_confirmation.xml" value="0.1" />
+        <entry key="..\:/ILLIA/IEshop/authentication/src/main/res/layout/fragment_confirmation.xml" value="0.16" />
         <entry key="..\:/ILLIA/IEshop/authentication/src/main/res/layout/fragment_load.xml" value="0.1" />
-        <entry key="..\:/ILLIA/IEshop/authentication/src/main/res/layout/fragment_login.xml" value="0.1" />
+        <entry key="..\:/ILLIA/IEshop/authentication/src/main/res/layout/fragment_login.xml" value="0.176" />
         <entry key="..\:/ILLIA/IEshop/authentication/src/main/res/layout/fragment_onboarding.xml" value="0.1" />
-        <entry key="..\:/ILLIA/IEshop/authentication/src/main/res/layout/fragment_singn_up.xml" value="0.2" />
+        <entry key="..\:/ILLIA/IEshop/authentication/src/main/res/layout/fragment_singn_up.xml" value="0.264" />
         <entry key="..\:/ILLIA/IEshop/authentication/src/main/res/layout/test.xml" value="0.1484375" />
+        <entry key="..\:/ILLIA/IEshop/core-ui/src/main/res/drawable/button_error_background.xml" value="0.143" />
+        <entry key="..\:/ILLIA/IEshop/core-ui/src/main/res/drawable/dialog_background.xml" value="0.1275" />
+        <entry key="..\:/ILLIA/IEshop/core-ui/src/main/res/drawable/error_background.xml" value="0.1275" />
+        <entry key="..\:/ILLIA/IEshop/core-ui/src/main/res/drawable/ic_baseline_close_24.xml" value="0.2545" />
         <entry key="..\:/ILLIA/IEshop/core-ui/src/main/res/drawable/progress_bg.xml" value="0.1" />
         <entry key="..\:/ILLIA/IEshop/core-ui/src/main/res/drawable/progress_horizontal_holo_no_background_light.xml" value="0.1" />
+        <entry key="..\:/ILLIA/IEshop/core-ui/src/main/res/layout/error_dialog.xml" value="0.1" />
         <entry key="..\:/ILLIA/IEshop/core-ui/src/main/res/layout/fragment_login.xml" value="0.1" />
+        <entry key="..\:/ILLIA/IEshop/core-ui/src/main/res/layout/layout.xml" value="0.2536231884057971" />
         <entry key="..\:/ILLIA/IEshop/core-ui/src/main/res/layout/loading.xml" value="0.1" />
         <entry key="..\:/ILLIA/IEshop/core-ui/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1225" />
+        <entry key="..\:/ILLIA/IEshop/main/src/main/res/layout/fragment_home.xml" value="0.152" />
+        <entry key="..\:/ILLIA/IEshop/main/src/main/res/layout/fragment_profile.xml" value="0.2536231884057971" />
+        <entry key="..\:/ILLIA/IEshop/main/src/main/res/menu/bottom_navigation_menu.xml" value="0.25416666666666665" />
         <entry key="..\:/Илья/IEshop/app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="..\:/Илья/IEshop/authentication/src/main/res/layout/fragment_login.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.18177083333333333" />

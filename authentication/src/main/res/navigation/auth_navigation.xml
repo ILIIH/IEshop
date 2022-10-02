@@ -25,6 +25,9 @@
         <action
             android:id="@+id/to_registrate"
             app:destination="@id/registrate" />
+        <action
+            android:id="@+id/action_login_to_main_navigation"
+            app:destination="@id/main_navigation" />
     </fragment>
     <fragment
         android:id="@+id/registrate"
@@ -41,5 +44,14 @@
     <fragment
         android:id="@+id/confirmation"
         android:name="com.example.authentication.fragment.ConfirmationFragment"
-        android:label="confirmation" />
+        android:label="confirmation" >
+        <action
+            android:id="@+id/action_confirmation_to_main_navigation"
+            app:destination="@id/main_navigation" />
+        <argument
+            android:name="curUser"
+            app:argType="com.example.core.domain.user" />
+
+    </fragment>
+    <include app:graph="@navigation/main_navigation" />
 </navigation>

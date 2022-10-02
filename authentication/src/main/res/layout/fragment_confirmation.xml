@@ -48,7 +48,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
     <EditText
-        android:id="@+id/editTextNumberSigned"
+        android:id="@+id/FirstN"
         android:layout_width="50dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="100dp"
@@ -58,13 +58,13 @@
         android:maxLength="1"
         android:minHeight="48dp"
         android:textSize="24sp"
-        app:layout_constraintEnd_toStartOf="@+id/editTextNumberSigned2"
+        app:layout_constraintEnd_toStartOf="@+id/SecondN"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Your_numer"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <EditText
-        android:id="@+id/editTextNumberSigned2"
+        android:id="@+id/SecondN"
         android:layout_width="50dp"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -73,13 +73,13 @@
         android:maxLength="1"
         android:minHeight="48dp"
         android:textSize="24sp"
-        app:layout_constraintEnd_toStartOf="@+id/editTextNumberSigned3"
-        app:layout_constraintStart_toEndOf="@+id/editTextNumberSigned"
-        app:layout_constraintTop_toTopOf="@+id/editTextNumberSigned"
+        app:layout_constraintEnd_toStartOf="@+id/ThirdN"
+        app:layout_constraintStart_toEndOf="@+id/FirstN"
+        app:layout_constraintTop_toTopOf="@+id/FirstN"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <EditText
-        android:id="@+id/editTextNumberSigned3"
+        android:id="@+id/ThirdN"
         android:layout_width="50dp"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -88,13 +88,13 @@
         android:maxLength="1"
         android:minHeight="48dp"
         android:textSize="24sp"
-        app:layout_constraintEnd_toStartOf="@+id/editTextNumberSigned4"
-        app:layout_constraintStart_toEndOf="@+id/editTextNumberSigned2"
-        app:layout_constraintTop_toTopOf="@+id/editTextNumberSigned"
+        app:layout_constraintEnd_toStartOf="@+id/ForthN"
+        app:layout_constraintStart_toEndOf="@+id/SecondN"
+        app:layout_constraintTop_toTopOf="@+id/FirstN"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <EditText
-        android:id="@+id/editTextNumberSigned4"
+        android:id="@+id/ForthN"
         android:layout_width="50dp"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -104,8 +104,8 @@
         android:minHeight="48dp"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/editTextNumberSigned3"
-        app:layout_constraintTop_toTopOf="@+id/editTextNumberSigned"
+        app:layout_constraintStart_toEndOf="@+id/ThirdN"
+        app:layout_constraintTop_toTopOf="@+id/FirstN"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <androidx.constraintlayout.widget.ConstraintLayout

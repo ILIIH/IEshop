@@ -1,21 +1,27 @@
 package com.example.core.domain.error
 
+import android.content.res.Resources
+import com.example.core.R
+
 sealed class ErrorEntity {
-    object Network : ErrorEntity()
+    data class Network(val measage : String = "NetworkError"): ErrorEntity()
 
-    object WrongCredentialsLogin : ErrorEntity()
+    data class WrongCredentialsLogin(val measage : String = "WrongCredentialsLoginError") : ErrorEntity()
 
-    object WrongCredentialsEmail : ErrorEntity()
+    data class WrongCredentialsEmail(val measage : String = "WrongCredentialsEmailError") : ErrorEntity()
 
-    object WrongCredentialsPassword : ErrorEntity()
+    data class WrongCredentialsPassword(val measage : String = "WrongCredentialsPasswordError") : ErrorEntity()
 
-    object WrongLoginOrPass : ErrorEntity()
+    data class WrongLoginOrPass(val measage : String = "Wrong login or password error") : ErrorEntity()
 
-    object MissToken : ErrorEntity()
+    data class NotSameCode(val measage : String = "Error incorrect code") : ErrorEntity()
 
-    object RepeatCredentials : ErrorEntity()
+    data class ServerError(val measage : String = "ServerError") : ErrorEntity()
 
-    object DatabaceError : ErrorEntity()
+    data class RepeatCredentials(val measage : String = "RepeatCredentialsError") : ErrorEntity()
+
+    data class DatabaceError(val measage : String = "DatabaceError") : ErrorEntity()
+
 
 }
 

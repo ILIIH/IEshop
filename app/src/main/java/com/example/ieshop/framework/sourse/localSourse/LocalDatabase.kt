@@ -5,11 +5,11 @@ import androidx.room.RoomDatabase
 import androidx.room.TypeConverter
 import androidx.room.TypeConverters
 import com.example.ieshop.framework.sourse.entities.Product
-import com.example.ieshop.framework.sourse.entities.Purchases
-import com.example.ieshop.framework.sourse.entities.User
+import com.example.ieshop.framework.sourse.entities.PurchasesDatabase
+import com.example.ieshop.framework.sourse.entities.UserDatabase
 import com.google.gson.Gson
 
-@Database(entities = [Purchases::class, User::class, Product::class], version = 2)
+@Database(entities = [PurchasesDatabase::class, UserDatabase::class, Product::class], version = 5)
 @TypeConverters(Converters::class)
 abstract class LocalDatabase : RoomDatabase() {
     abstract fun userDao(): ShopDAO

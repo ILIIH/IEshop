@@ -1,11 +1,11 @@
-package com.example.core_ui
+package com.example.core_ui.screens
 
-import android.app.Dialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
+import com.example.core_ui.R
 import com.example.core_ui.databinding.LoadingBinding
 
 
