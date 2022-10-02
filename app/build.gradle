@@ -11,7 +11,7 @@ android {
     }
     defaultConfig {
         applicationId "com.example.ieshop"
-        minSdk 21
+        minSdk 23
         targetSdk 32
         versionCode 1
         versionName "1.0"
@@ -52,7 +52,9 @@ dependencies {
     implementation project(path: ':authentication')
     implementation project(path: ':main')
 
-    implementation 'nl.joery.animatedbottombar:library:1.1.0'
+    implementation 'com.github.ismaeldivita:chip-navigation-bar:1.4.0'
+    //круглая картика
+    implementation 'com.makeramen:roundedimageview:2.3.0'
 
     implementation "com.google.android.material:material:$material_version"
     implementation 'androidx.core:core-ktx:1.8.0'

@@ -12,15 +12,16 @@ sealed class ErrorEntity {
 
     data class WrongCredentialsPassword(val measage : String = "WrongCredentialsPasswordError") : ErrorEntity()
 
-    data class WrongLoginOrPass(val measage : String = "WrongLoginOrPassError") : ErrorEntity()
+    data class WrongLoginOrPass(val measage : String = "Wrong login or password error") : ErrorEntity()
 
-    data class MissToken(val measage : String = "MissTokenError") : ErrorEntity()
+    data class NotSameCode(val measage : String = "Error incorrect code") : ErrorEntity()
 
     data class ServerError(val measage : String = "ServerError") : ErrorEntity()
 
     data class RepeatCredentials(val measage : String = "RepeatCredentialsError") : ErrorEntity()
 
     data class DatabaceError(val measage : String = "DatabaceError") : ErrorEntity()
+
 
 }
 

@@ -12,13 +12,12 @@ inline fun <ResultType, RequestType> networkBoundResource(
     crossinline shouldFetch:() -> Boolean = {true}
 ) = flow {
     Log.i("RepoLog", "Inside networkBoundResource")
-    val data = query().first()
+    val data = query().last()
 
     val flow = if (shouldFetch()) {
         emit(UIState.Loading(data))
         try {
             val fetchRes = fetch()
-            Log.i("RepoLog", "Fetch Result  ${fetchRes}")
             saveFetchResult(fetchRes)
             query().map { UIState.Success(it) }
         } catch (throwable: Throwable) {
@@ -28,6 +27,8 @@ inline fun <ResultType, RequestType> networkBoundResource(
             val error = when (throwable.message) {
                 "RepeatCredentials" -> ErrorEntity.RepeatCredentials()
                 "Sever error" -> ErrorEntity.ServerError()
+                "UNIQUE constraint failed: UserDatabase.Login (code 1555 SQLITE_CONSTRAINT_PRIMARYKEY)" -> ErrorEntity.RepeatCredentials()
+                "Incorrect password or login" -> ErrorEntity.WrongLoginOrPass()
                 else -> ErrorEntity.DatabaceError()
             }
             query().map { UIState.Error(error, it) }

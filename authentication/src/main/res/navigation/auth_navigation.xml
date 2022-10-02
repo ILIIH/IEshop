@@ -48,6 +48,10 @@
         <action
             android:id="@+id/action_confirmation_to_main_navigation"
             app:destination="@id/main_navigation" />
+        <argument
+            android:name="curUser"
+            app:argType="com.example.core.domain.user" />
+
     </fragment>
     <include app:graph="@navigation/main_navigation" />
 </navigation>

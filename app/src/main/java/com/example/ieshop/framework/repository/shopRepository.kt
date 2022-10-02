@@ -1,10 +1,13 @@
 package com.example.ieshop.framework.repository
 
 import android.util.Log
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import com.example.core.data.repository.repository
 import com.example.core.domain.error.UIState
 import com.example.core.domain.product
 import com.example.core.domain.user
+import com.example.ieshop.di.AppScope
 import com.example.ieshop.framework.sourse.localSourse.LocalDatabase
 import com.example.ieshop.framework.sourse.remoteSourse.ShopService
 import com.example.ieshop.utils.asUserData
@@ -14,26 +17,40 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
+import javax.inject.Singleton
 
+@AppScope
 open class shopRepository @Inject constructor(
     val localDB: LocalDatabase,
     val remoteDB: ShopService,
-    val userManager: userManager
 ) : repository {
+
+
+    override suspend fun authorize(email:String,code:String, user:user){
+        withContext(Dispatchers.IO) {
+            Log.i("RepoLog","inside authorize repository")
+            return@withContext remoteDB.authorizeEmail(email, code)
+        }
+    }
+    private var curUser = MutableLiveData<user>()
+    val _curUser: LiveData<user>
+        get() = curUser
+
+    override fun getCurrentUser() = _curUser.value
 
     override suspend fun registrate(user: user) = networkBoundResource(
         query = {
             Log.i("RepoLog", "Inside query")
             flow {
-                val resQuery = localDB.userDao().getUserInfo(user.login)
-                if(!resQuery.isEmpty()) emit(resQuery.first().asUserData())
+                val resQuery = localDB.userDao().getUserInfo(user.email)
+
+                if(resQuery.isNotEmpty()) emit(resQuery.first().asUserData())
                 else emit(user("-","-","-","-","-","-", listOf(), listOf(),"-","-"))
             }.flowOn(Dispatchers.IO)
         },
         fetch = {
 
       withContext(Dispatchers.IO){
-          Log.i("RepoLog", "Inside fetch")
 
           val res = localDB.userDao().getUserInfo(user.login)
           Log.i("RepoLog", "Inside FLOW query res = ${res}")
@@ -42,6 +59,7 @@ open class shopRepository @Inject constructor(
 
               remoteDB.registrate(user.name,user.surname,user.email,user.login,user.photo,
                   user.telephone,user.password,user.country)
+
 
           } else throw  Exception("RepeatCredentials");
       }
@@ -53,8 +71,10 @@ open class shopRepository @Inject constructor(
                 if(user.body()!=null) {
 
                     localDB.userDao().registrate(user.body()!!.asUserDatabace())
-                    Log.i("RepoLog", "Inside fetch query emit user ${user} ")
-                    user.body()?.let { userManager.login(it.asUserData()) }
+                    Log.i("RegisterCheck", "!!!!Inside Fetrch regiotreted !!!! ${user.body()!!.asUserDatabace()}")
+
+                    val resQuery = localDB.userDao().getUserInfo(user.body()!!.login)
+                    Log.i("RegisterCheck", "!!!!Inside Fetrch regiotreted  get user =  !!!! $resQuery")
                 }
                 else{
                     throw  Exception("Sever error");
@@ -87,8 +107,11 @@ open class shopRepository @Inject constructor(
         },
         saveFetchResult = { user ->
             Log.i("RepoLog", "Inside login saveFetchResult user =  "+ user.body())
+
             if(user.body()!=null) {
-                user.body()?.let { userManager.login(it.first().asUserData()) }
+                if(user.body()!!.isEmpty()) throw  Exception("Incorrect password or login");
+                curUser.postValue(user.body()!!.first().asUserData())
+
             }
             else throw  Exception("Sever error");
         }

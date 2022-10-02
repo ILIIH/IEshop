@@ -1,14 +1,19 @@
-
 buildscript {
     ext{
         room_version = '2.3.0'
         retrofit_version = "2.9.0"
         dagger_version = '2.38.1'
         material_version = '1.6.0'
-        nav_version = "2.5.1"
         coroutine_version = "1.6.4"
         lifecycle_version = "2.4.0"
+        nav_version = "2.3.5"
+
     }
+
+    dependencies {
+        classpath "androidx.navigation:navigation-safe-args-gradle-plugin:$nav_version"
+    }
+
 }
 
 plugins {
@@ -20,3 +25,5 @@ plugins {
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
+
+

@@ -1,13 +1,15 @@
 package com.example.ieshop.framework.sourse.remoteSourse
 
 import com.example.ieshop.framework.sourse.entities.Product
-import com.example.ieshop.framework.sourse.entities.Purchases
+import com.example.ieshop.framework.sourse.entities.PurchasesDatabase
 import com.example.ieshop.framework.sourse.entities.UserDatabase
 import com.example.ieshop.framework.sourse.entities.UserNetwork
 import retrofit2.Response
 import retrofit2.http.*
 
 interface ShopService {
+    @GET("/api/sendEmail/{email}/{code}")
+    suspend fun authorizeEmail(@Path("email") email:String,@Path("code") code:String): Response<Boolean>
 
     @GET("/api/get/user/by/login/")
     fun getUserInfo(@Query("login") login: String): Response<List<UserDatabase>>
@@ -76,8 +78,8 @@ interface ShopService {
 
 
     @POST("/{login}/user/purchase")
-    fun countOfUser(@Body login: String): Response<List<Purchases>>
+    fun countOfUser(@Body login: String): Response<List<PurchasesDatabase>>
 
     @GET("/{login}/user/purchase")
-    fun getPurchases(@Path("login") login: String): Response<List<Purchases>>
+    fun getPurchases(@Path("login") login: String): Response<List<PurchasesDatabase>>
 }

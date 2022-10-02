@@ -7,6 +7,5 @@ sealed class UIState<T>(
     class Success<T>(data: T? = null) : UIState<T>(data)
     class Loading<T>(data: T? = null) : UIState<T>(data)
     class Error<T>(throwable: ErrorEntity, data: T? = null) : UIState<T>(data, throwable)
-    class Idle<T>() : UIState<T>()
 
 }

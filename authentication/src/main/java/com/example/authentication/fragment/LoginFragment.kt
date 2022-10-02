@@ -88,22 +88,11 @@ class LoginFragment : Fragment() {
                 accessToken
             ) { `object`, response ->
                 val username = `object`.getString("first_name")
-                val surname = `object`.getString("last_name")
                 val link = `object`.getString("link")
-                val picture = `object`.getJSONObject("picture").getJSONObject("data").getString("url")
-                val curCountry = `object`.getJSONObject("location").getString("name")
 
-                authViewModel.registrate(
+                authViewModel.login(
                     username,
-                    surname,
-                    username,
-                    picture,
-                    "facebook",
-                    listOf(),
-                    listOf(),
-                    link,
-                    "facebook",
-                    curCountry
+                    link
                 )
             }
             val parameters = Bundle()
@@ -116,8 +105,6 @@ class LoginFragment : Fragment() {
         // Callback registration
         loginButton.registerCallback(callbackManager, object : FacebookCallback<LoginResult?> {
             override fun onSuccess(loginResult: LoginResult?) {
-                findNavController().navigate(com.example.main.R.id.main_navigation)
-
             }
 
             override fun onCancel() {
@@ -148,10 +135,12 @@ class LoginFragment : Fragment() {
 
                 }is UIState.Success -> {
                     if(loadingFragment.dialog!=null)loadingFragment.dismiss()
+
                     findNavController().navigate(com.example.main.R.id.main_navigation)
 
             }
                 is UIState.Loading ->{
+                    if(loadingFragment.dialog!=null)
                     loadingFragment.show(requireActivity().supportFragmentManager, LoadingFragment.TAG)
                 }
             }

@@ -9,9 +9,9 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flow
 
-open class registrate constructor(private val repository: repository) {
+class registrate constructor(private val repository: repository) {
 
-    open suspend fun execute(user: user): Flow<UIState<user>> {
+    suspend fun execute(user: user): Flow<UIState<user>> {
         val encryptedPassword = StringBuffer()
         for (item in user.password) {
             encryptedPassword.append(item.code + 11)
