@@ -3,17 +3,14 @@ package com.example.ieshop
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.findNavController
-import androidx.navigation.fragment.NavHostFragment
+import androidx.core.view.GravityCompat
 import com.example.ieshop.databinding.ActivityMainBinding
 import com.example.ieshop.di.MyApplication
 import com.example.ieshop.framework.repository.shopRepository
-import androidx.navigation.ui.setupWithNavController
 import com.example.basket.OrdersFragment
 import com.example.main.HomeFragment
 import com.example.profile.ProfileFragment
 import com.example.search.TextSearchFragment
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
@@ -29,14 +26,20 @@ class MainActivity : AppCompatActivity() {
 
         view.bottomMenu.visibility = View.GONE
         view.burger.visibility = View.GONE
+        view.topNavIcon.visibility = View.GONE
 
         repo._curUser.observe(this) { user ->
             if (user != null) {
                 view.bottomMenu.visibility = View.VISIBLE
                 view.burger.visibility = View.VISIBLE
+                view.topNavIcon.visibility = View.VISIBLE
+
             }
         }
 
+        view.topNavIcon.setOnClickListener {
+            view.drawerLayout.openDrawer(GravityCompat.START)
+        }
         view.bottomMenu.setOnItemSelectedListener {
             when (it) {
 
