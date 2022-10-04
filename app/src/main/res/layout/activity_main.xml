@@ -44,7 +44,7 @@
                 app:navGraph="@navigation/navigation_graph" />
 
         <com.google.android.material.navigation.NavigationView
-            android:id="@+id/burger"
+            android:id="@+id/navView"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_gravity="start"

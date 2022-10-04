@@ -4,6 +4,10 @@ import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
+import androidx.drawerlayout.widget.DrawerLayout
+import androidx.navigation.Navigation
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.NavigationUI
 import com.example.ieshop.databinding.ActivityMainBinding
 import com.example.ieshop.di.MyApplication
 import com.example.ieshop.framework.repository.shopRepository
@@ -25,15 +29,14 @@ class MainActivity : AppCompatActivity() {
         (applicationContext as MyApplication).appComponent.injectMainActivity(this)
 
         view.bottomMenu.visibility = View.GONE
-        view.burger.visibility = View.GONE
         view.topNavIcon.visibility = View.GONE
-
+        view.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
+        
         repo._curUser.observe(this) { user ->
             if (user != null) {
                 view.bottomMenu.visibility = View.VISIBLE
-                view.burger.visibility = View.VISIBLE
                 view.topNavIcon.visibility = View.VISIBLE
-
+                view.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_OPEN);
             }
         }
 
@@ -67,6 +70,10 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+        val navHostFragment = supportFragmentManager.findFragmentById(R.id.fragmentContainerView) as NavHostFragment
+        val navController = navHostFragment.navController
+
+        NavigationUI.setupWithNavController(view.navView,navController )
         setContentView(view.root)
     }
 

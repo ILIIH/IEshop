@@ -13,11 +13,13 @@
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/authentication" />
             <option value="$PROJECT_DIR$/basket" />
+            <option value="$PROJECT_DIR$/contacts" />
             <option value="$PROJECT_DIR$/core" />
             <option value="$PROJECT_DIR$/core-ui" />
             <option value="$PROJECT_DIR$/main" />
             <option value="$PROJECT_DIR$/profile" />
             <option value="$PROJECT_DIR$/search" />
+            <option value="$PROJECT_DIR$/settings" />
           </set>
         </option>
       </GradleProjectSettings>

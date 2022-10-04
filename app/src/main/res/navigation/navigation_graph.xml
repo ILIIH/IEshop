@@ -8,4 +8,9 @@
     <include app:graph="@navigation/basket_nav_graph" />
     <include app:graph="@navigation/search_nav_garph" />
     <include app:graph="@navigation/profile_nav_graph" />
+
+    <include app:graph="@navigation/settings_nav_graph" />
+    <include app:graph="@navigation/contacts_nav_graph" />
+
+
 </navigation>

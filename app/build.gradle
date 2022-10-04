@@ -54,6 +54,8 @@ dependencies {
     implementation project(path: ':profile')
     implementation project(path: ':search')
     implementation project(path: ':basket')
+    implementation project(path: ':settings')
+    implementation project(path: ':contacts')
 
     implementation 'com.github.ismaeldivita:chip-navigation-bar:1.4.0'
     //круглая картика

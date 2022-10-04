@@ -3,13 +3,14 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/search_nav_garph"
+        android:id="@+id/settings_nav_graph"
         android:icon="@drawable/ic_baseline_settings_24"
-        android:title="Settings" />
+        android:title="@string/settings" />
     <item
+        android:id="@+id/contacts_nav_graph"
         android:icon="@drawable/ic_baseline_people_alt_24"
-        android:title="About us" />
+        android:title="@string/about_us" />
     <item
         android:icon="@drawable/ic_baseline_exit_to_app_24"
-        android:title="Exit" />
+        android:title="@string/exit" />
 </menu>
