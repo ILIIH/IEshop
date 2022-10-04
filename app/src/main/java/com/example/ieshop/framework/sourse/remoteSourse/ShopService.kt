@@ -1,7 +1,6 @@
 package com.example.ieshop.framework.sourse.remoteSourse
 
-import com.example.ieshop.framework.sourse.entities.Product
-import com.example.ieshop.framework.sourse.entities.PurchasesDatabase
+import com.example.ieshop.framework.sourse.entities.ProductDatabase
 import com.example.ieshop.framework.sourse.entities.UserDatabase
 import com.example.ieshop.framework.sourse.entities.UserNetwork
 import retrofit2.Response
@@ -13,6 +12,10 @@ interface ShopService {
 
     @GET("/api/get/user/by/login/")
     fun getUserInfo(@Query("login") login: String): Response<List<UserDatabase>>
+
+    @GET("/api/get/all/product")
+    fun getAllProduct(): Response<List<UserDatabase>>
+
 
     @FormUrlEncoded
     @POST("/api/login/")
@@ -73,13 +76,13 @@ interface ShopService {
     ): Response<Boolean>
 
     @GET("/product")
-    fun getProductPerPage(@Query("page") page: Int, @Query("per_page") per_page: Int): Response<List<Product>>
+    fun getProductPerPage(@Query("page") page: Int, @Query("per_page") per_page: Int): Response<List<ProductDatabase>>
 
 
 
     @POST("/{login}/user/purchase")
-    fun countOfUser(@Body login: String): Response<List<PurchasesDatabase>>
+    fun countOfUser(@Body login: String): Response<List<ProductDatabase>>
 
     @GET("/{login}/user/purchase")
-    fun getPurchases(@Path("login") login: String): Response<List<PurchasesDatabase>>
+    fun getPurchases(@Path("login") login: String): Response<List<ProductDatabase>>
 }
