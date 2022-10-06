@@ -14,9 +14,11 @@ interface ShopDAO {
     @Query("SELECT * FROM ProductDatabase LIMIT :page, :per_page")
     fun getProductPerPage(page: Int, per_page: Int): List<ProductDatabase>
 
+    @Query("SELECT * FROM ProductDatabase")
+    fun getAllProducts(): List<ProductDatabase>
+
     @Query("SELECT * FROM UserDatabase WHERE Login = :log")
     fun getUserInfo(log: String): List<UserDatabase>
-
 
     @Query("SELECT COUNT(*) FROM UserDatabase WHERE Login = :login AND Password = :password")
     fun login(login: String, password: String): Int
@@ -26,7 +28,6 @@ interface ShopDAO {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun registrate(user: UserDatabase)
-
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun addProduct(product: ProductDatabase)

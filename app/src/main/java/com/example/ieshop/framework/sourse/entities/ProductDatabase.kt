@@ -11,6 +11,6 @@ data class ProductDatabase(
     val publishData: String,
     val photos: String,
     val ownerLogin: String,
-    @PrimaryKey(autoGenerate = true) val id: Int
+    @PrimaryKey(autoGenerate = true) val id: Int = 0
 
 )
