@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.GridLayoutManager
 import com.example.authentication.fragment.viewModel.mainComponentViewModel
 import com.example.authentication.fragment.viewModel.mainViewModel
 import com.example.authentication.fragment.viewModel.mainViewModelFactory
@@ -28,7 +29,6 @@ class HomeFragment : Fragment() {
     override fun onAttach(context: Context) {
         super.onAttach(context)
         componentViewModel.mainComponent.injectHome(this)
-        mainViewModel.loadAllProduct()
     }
 
     override fun onCreateView(
@@ -38,12 +38,26 @@ class HomeFragment : Fragment() {
     ): View? {
         val view = FragmentHomeBinding.inflate(layoutInflater, container, false)
         val prodAdapter = ProductAdapter()
+        view.newRecycle.setLayoutManager(GridLayoutManager(requireContext(), 2))
         view.newRecycle.adapter = prodAdapter
+
+        val prodFavAdapter = ProductAdapter()
+        prodFavAdapter.setRecyclerViewLayout()
+        view.recomendedRecycle.adapter = prodFavAdapter
+
+        val chategoryAdapter = ProductAdapter()
+        chategoryAdapter.setRecyclerViewLayout()
+        view.categoryRecycle.adapter = chategoryAdapter
+
+        mainViewModel.updateChategory {
+            chategoryAdapter.submitList(it)
+        }
+
         mainViewModel._productLoadingState.observe(requireActivity()) { list ->
             when (list) {
                 is UIState.Error -> {
                     val ErrorMessage = Bundle()
-                    ErrorMessage.putString("Measage",list.error.toString())
+                    ErrorMessage.putString("Measage", list.error.toString())
                     errorFragment.arguments = ErrorMessage
                     errorFragment.show(requireActivity().supportFragmentManager, ErrorDialogFragment.TAG)
                 }
@@ -52,6 +66,21 @@ class HomeFragment : Fragment() {
                 }
             }
         }
+
+        mainViewModel._productFavLoadingState.observe(requireActivity()) { list ->
+            when (list) {
+                is UIState.Error -> {
+                    val ErrorMessage = Bundle()
+                    ErrorMessage.putString("Measage", list.error.toString())
+                    errorFragment.arguments = ErrorMessage
+                    errorFragment.show(requireActivity().supportFragmentManager, ErrorDialogFragment.TAG)
+                }
+                is UIState.Success -> {
+                    prodFavAdapter.submitList(list.data)
+                }
+            }
+        }
+
         return view.root
     }
 }

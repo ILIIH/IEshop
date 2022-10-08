@@ -11,6 +11,9 @@ interface ShopService {
     @GET("/api/sendEmail/{email}/{code}")
     suspend fun authorizeEmail(@Path("email") email: String, @Path("code") code: String): Response<Boolean>
 
+    @GET ("/api/get/all/product/favorites/{login}")
+    suspend fun getFavoriteProduct(@Path("login") login: String): Response<List<ProductNetwork>>
+
     @GET("/api/get/user/by/login/")
     fun getUserInfo(@Query("login") login: String): Response<List<UserDatabase>>
 

@@ -121,12 +121,40 @@ open class shopRepository @Inject constructor(
     override fun getProductsByPage(page: Int): List<product> {
         return listOf()
     }
+    override suspend fun getFavoriteProduct() =  networkBoundResource(
+        query = {
+            Log.i("RepoLog", "Inside Favour Product query")
+            flow {
+                val resQuery = localDB.userDao().getAllProducts()
+                Log.i("RepoLog", "prod + $resQuery")
+                if (resQuery.isNotEmpty()) emit(resQuery.map { it.asProductData() })
+                else emit(listOf())
+            }.flowOn(Dispatchers.IO)
+        },
+        fetch = {
+            withContext(Dispatchers.IO) {
+                Log.i("RepoLog", "Inside Favour product fetch ")
+                remoteDB.getFavoriteProduct(curUser.value!!.login)
+            }
+        },
+        saveFetchResult = {
+            withContext(Dispatchers.IO) {
+                Log.i("RepoLog", "Inside Favour product saveFetchResult body =  " + it.body())
+
+                if (it.body() != null) {
+                    if (it.body()!!.isEmpty()) throw Exception("Incorrect password or login")
+                    it.body()!!.map { localDB.userDao().addProduct(it.asProductDataBace()) }
+                } else throw Exception("Sever error")
+            }
+        }
+    )
 
     override suspend fun getAllProduct() = networkBoundResource(
         query = {
             Log.i("RepoLog", "Inside Product query")
             flow {
                 val resQuery = localDB.userDao().getAllProducts()
+                Log.i("RepoLog", "prod + $resQuery")
                 if (resQuery.isNotEmpty()) emit(resQuery.map { it.asProductData() })
                 else emit(listOf())
             }.flowOn(Dispatchers.IO)

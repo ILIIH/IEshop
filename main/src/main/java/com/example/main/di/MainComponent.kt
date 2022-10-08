@@ -4,6 +4,7 @@ import android.app.Application
 import android.content.Context
 import com.example.core.data.repository.repository
 import com.example.core.usecases.getAllProducts
+import com.example.core.usecases.getFavoriteProducts
 import com.example.main.HomeFragment
 import dagger.Component
 import dagger.Module
@@ -31,7 +32,8 @@ interface MainComponent {
 
 @Module
 internal class mainModule {
-    @Provides fun providegetAllProductsUsecase(repository: repository) = getAllProducts(repository)
+    @Provides fun provideGetAllProductsUsecase(repository: repository) = getAllProducts(repository)
+    @Provides fun provideGetFavProductUsecase(repository: repository) = getFavoriteProducts(repository)
 }
 
 interface mainDeps {

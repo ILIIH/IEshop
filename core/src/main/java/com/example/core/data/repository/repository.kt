@@ -14,4 +14,6 @@ interface repository {
     fun getUsersByPage(page: Int): List<user>
     fun getProductsByPage(page: Int): List<product>
     suspend fun getAllProduct(): Flow<UIState<List<product>>>
+    suspend fun getFavoriteProduct(): Flow<UIState<List<product>>>
+
 }

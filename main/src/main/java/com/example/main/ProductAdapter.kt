@@ -8,33 +8,68 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.core.domain.product
 import com.example.main.databinding.OtherItemBinding
+import com.example.main.databinding.SecondItemLayoutBinding
 
-class ProductAdapter : ListAdapter<product, ProductAdapter.RepoViewHolder>(DiffCallback()) {
+class ProductAdapter : ListAdapter<product, RecyclerView.ViewHolder>(DiffCallback()) {
 
-    val category: Boolean = false
+    private var firstLayout: Boolean = false
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RepoViewHolder {
-        return RepoViewHolder.from(parent, category)
+    fun setRecyclerViewLayout(){
+        firstLayout = true
     }
 
-    override fun onBindViewHolder(holder: RepoViewHolder, position: Int) {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int):  RecyclerView.ViewHolder {
+        return if(!firstLayout) FirstLayoutHolder.from(parent)
+        else SecondLayoutHolder.from(parent)
+    }
+
+    override fun onBindViewHolder(holder:  RecyclerView.ViewHolder, position: Int) {
         val item = getItem(position)
-        item?.let { holder.bind(it) }
+        when(holder) {
+            is SecondLayoutHolder ->item?.let { holder.bind(it) }
+            is FirstLayoutHolder -> item?.let { holder.bind(it) }
+        }
+
     }
 
-    class RepoViewHolder private constructor(val binding: OtherItemBinding) : RecyclerView.ViewHolder(binding.root) {
+    class FirstLayoutHolder private constructor(val binding: OtherItemBinding) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: product) {
             Glide.with(binding.root.context).load(item.photos.first()).into(binding.itemIcon)
-            binding.title.text = item.type
+            binding.title.text = item.name
             binding.secondTitle.text = "$" + item.cost.toString()
             binding.executePendingBindings()
         }
 
         companion object {
-            fun from(parent: ViewGroup, category: Boolean): RepoViewHolder {
+            fun from(parent: ViewGroup): FirstLayoutHolder {
                 val layoutInflater = LayoutInflater.from(parent.context)
-                return RepoViewHolder(OtherItemBinding.inflate(layoutInflater, parent, false))
+                return FirstLayoutHolder(OtherItemBinding.inflate(layoutInflater, parent, false))
+            }
+        }
+    }
+
+    class SecondLayoutHolder private constructor(val binding: SecondItemLayoutBinding) : RecyclerView.ViewHolder(binding.root) {
+
+        fun bind(item: product) {
+            Glide.with(binding.root.context).load(item.photos.first()).into(binding.itemIcon)
+            if(item.ownerLogin != "C"){
+            binding.category.text = item.name
+             binding.categoryCount.text = "$" + item.cost.toString()
+
+            }
+            else {
+                binding.category.text = item.type
+                binding.categoryCount.text = item.cost.toString()+"+ Products"
+
+            }
+            binding.executePendingBindings()
+        }
+
+        companion object {
+            fun from(parent: ViewGroup): SecondLayoutHolder {
+                val layoutInflater = LayoutInflater.from(parent.context)
+                return SecondLayoutHolder(SecondItemLayoutBinding.inflate(layoutInflater, parent, false))
             }
         }
     }

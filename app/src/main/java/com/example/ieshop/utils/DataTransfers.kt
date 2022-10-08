@@ -24,7 +24,8 @@ fun ProductDatabase.asProductData(): product = product(
     type,
     publishData,
     photos.split("||"),
-    ownerLogin
+    ownerLogin,
+    id
 )
 fun ProductNetwork.asProductData(): product = product(
     name,
@@ -32,7 +33,8 @@ fun ProductNetwork.asProductData(): product = product(
     type,
     publishData,
     photos.split("||"),
-    ownerLogin
+    ownerLogin,
+    id
 )
 
 fun ProductNetwork.asProductDataBace(): ProductDatabase = ProductDatabase(
@@ -41,7 +43,8 @@ fun ProductNetwork.asProductDataBace(): ProductDatabase = ProductDatabase(
     type,
     publishData,
     photos,
-    ownerLogin
+    ownerLogin,
+    id
 )
 
 fun UserDatabase.asUserData(): user = user(

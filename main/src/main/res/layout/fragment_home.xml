@@ -8,8 +8,9 @@
         layout_width="match_parent"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fillViewport="true"
-        >
+        android:layout_marginTop="90dp"
+        android:layout_marginBottom="45dp"
+        android:fillViewport="true">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -19,6 +20,7 @@
             <TextView
                 android:id="@+id/categoryTitle"
                 style="@style/title_style"
+                android:layout_marginTop="1dp"
                 android:text="@string/browse_by_categories"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -26,42 +28,47 @@
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/categoryRecycle"
+                style="@style/recycle_style"
+                android:layout_width="391dp"
+                android:layout_height="wrap_content"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/categoryTitle"
-                style="@style/recycle_style" />
+                app:layout_constraintTop_toBottomOf="@+id/categoryTitle" />
 
 
             <TextView
                 android:id="@+id/recomendedTitle"
+                style="@style/title_style"
+                android:layout_marginTop="60dp"
                 android:text="@string/recommended_for_you"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/categoryRecycle"
-                style="@style/title_style"/>
+                app:layout_constraintTop_toBottomOf="@+id/categoryRecycle" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recomendedRecycle"
+                style="@style/recycle_style"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/recomendedTitle"
-                style="@style/recycle_style"/>
+                app:layout_constraintTop_toBottomOf="@+id/recomendedTitle" />
 
 
             <TextView
                 android:id="@+id/newTitle"
+                style="@style/title_style"
+                android:layout_marginTop="60dp"
                 android:text="@string/new_products"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/recomendedRecycle"
-                style="@style/title_style"/>
+                app:layout_constraintTop_toBottomOf="@+id/recomendedRecycle" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/newRecycle"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                style="@style/recycle_style"
+                android:layout_marginTop="35dp"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/newTitle"
-                style="@style/recycle_style"/>
+                app:layout_constraintTop_toBottomOf="@+id/newTitle" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 </layout>
