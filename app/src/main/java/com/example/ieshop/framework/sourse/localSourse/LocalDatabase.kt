@@ -8,7 +8,7 @@ import com.example.ieshop.framework.sourse.entities.ProductDatabase
 import com.example.ieshop.framework.sourse.entities.UserDatabase
 import com.google.gson.Gson
 
-@Database(entities = [UserDatabase::class, ProductDatabase::class], version = 6)
+@Database(entities = [UserDatabase::class, ProductDatabase::class], version = 7)
 @TypeConverters(Converters::class)
 abstract class LocalDatabase : RoomDatabase() {
     abstract fun userDao(): ShopDAO
