@@ -9,5 +9,7 @@ data class ProductNetwork(
     @field:SerializedName("publishData") val publishData: String,
     @field:SerializedName("photos") val photos: String,
     @field:SerializedName("ownerLogin") val ownerLogin: String,
-    @field:SerializedName("id") val id: Int
+    @field:SerializedName("id") val id: Int,
+    @field:SerializedName("orderLogin") val orderLogin: String?,
+    @field:SerializedName("orderDate") val orderDate: String?
 )

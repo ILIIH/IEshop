@@ -25,7 +25,9 @@ fun ProductDatabase.asProductData(): product = product(
     publishData,
     photos.split("||"),
     ownerLogin,
-    id
+    id,
+    orderLogin ,
+    orderDate
 )
 fun ProductNetwork.asProductData(): product = product(
     name,
@@ -34,18 +36,26 @@ fun ProductNetwork.asProductData(): product = product(
     publishData,
     photos.split("||"),
     ownerLogin,
-    id
+    id ,
+    orderLogin ,
+    orderDate
 )
 
-fun ProductNetwork.asProductDataBace(): ProductDatabase = ProductDatabase(
-    name,
-    cost,
-    type,
-    publishData,
-    photos,
-    ownerLogin,
-    id
-)
+fun ProductNetwork.asProductDataBace(): ProductDatabase {
+    val OrderLogin = orderLogin ?: ""
+    val OrderDate = orderDate ?: ""
+    return ProductDatabase(
+        name,
+        cost,
+        type,
+        publishData,
+        photos,
+        ownerLogin,
+        id,
+        OrderLogin,
+        OrderDate
+    )
+}
 
 fun UserDatabase.asUserData(): user = user(
     name, surname, login, email, photo, telephone, listOf(), listOf(), password, country

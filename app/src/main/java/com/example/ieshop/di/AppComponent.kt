@@ -6,12 +6,13 @@ import com.example.core.data.repository.repository
 import com.example.ieshop.MainActivity
 import com.example.ieshop.framework.repository.shopRepository
 import com.example.main.di.mainDeps
+import com.example.profile.di.profileDeps
 import dagger.*
 import javax.inject.Scope
 
 @AppScope
 @Component(modules = [NetworkModule::class, RoomModule::class, RepoModule::class])
-interface AppComponent : authDeps, mainDeps {
+interface AppComponent : authDeps, mainDeps, profileDeps {
 
     @Component.Builder
     interface Builder {

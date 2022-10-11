@@ -1,4 +1,4 @@
-package com.example.main
+package com.example.core_ui.adapters.recycler
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -7,8 +7,9 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.core.domain.product
-import com.example.main.databinding.OtherItemBinding
-import com.example.main.databinding.SecondItemLayoutBinding
+import com.example.core_ui.databinding.OtherItemBinding
+import com.example.core_ui.databinding.SecondItemLayoutBinding
+
 
 class ProductAdapter : ListAdapter<product, RecyclerView.ViewHolder>(DiffCallback()) {
 

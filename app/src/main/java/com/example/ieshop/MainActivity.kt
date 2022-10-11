@@ -2,6 +2,7 @@ package com.example.ieshop
 
 import android.os.Bundle
 import android.view.View
+import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
@@ -22,6 +23,9 @@ class MainActivity : AppCompatActivity() {
     lateinit var repo: shopRepository
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
+        window.addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
         super.onCreate(savedInstanceState)
         val view = ActivityMainBinding.inflate(layoutInflater)
 

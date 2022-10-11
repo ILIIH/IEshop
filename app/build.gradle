@@ -58,6 +58,7 @@ dependencies {
     implementation project(path: ':contacts')
 
     implementation 'com.github.ismaeldivita:chip-navigation-bar:1.4.0'
+
     //круглая картика
     implementation 'com.makeramen:roundedimageview:2.3.0'
 

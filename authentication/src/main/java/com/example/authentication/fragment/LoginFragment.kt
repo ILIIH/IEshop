@@ -139,9 +139,9 @@ class LoginFragment : Fragment() {
                     findNavController().navigate(com.example.main.R.id.main_navigation)
                 }
                 is UIState.Loading -> {
-                    if (loadingFragment.dialog != null) {
-                        loadingFragment.show(requireActivity().supportFragmentManager, LoadingFragment.TAG)
-                    }
+                    if(loadingFragment.dialog==null)
+                    loadingFragment.show(requireActivity().supportFragmentManager, LoadingFragment.TAG)
+
                 }
             }
         }

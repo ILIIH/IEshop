@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
 import com.example.core_ui.R
 import com.example.core_ui.databinding.ErrorDialogBinding
-import com.example.core_ui.databinding.LoadingBinding
 
 class ErrorDialogFragment: DialogFragment() {
     companion object{

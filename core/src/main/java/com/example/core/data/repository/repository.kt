@@ -7,7 +7,6 @@ import kotlinx.coroutines.flow.Flow
 
 interface repository {
     suspend fun registrate(user: user): Flow<UIState<user>>
-    suspend fun getUser(login: String): Flow<UIState<user>>
     suspend fun login(login: String, password: String): Flow<UIState<user>>
     suspend fun authorize(email: String, code: String, user: user)
     fun getCurrentUser(): user?
@@ -15,5 +14,5 @@ interface repository {
     fun getProductsByPage(page: Int): List<product>
     suspend fun getAllProduct(): Flow<UIState<List<product>>>
     suspend fun getFavoriteProduct(): Flow<UIState<List<product>>>
-
+    suspend fun getPurchese(): Flow<UIState<List<product>>>
 }

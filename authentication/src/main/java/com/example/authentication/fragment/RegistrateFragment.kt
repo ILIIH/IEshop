@@ -91,7 +91,7 @@ class RegistrateFragment : Fragment() {
                     findNavController().navigate(RegistrateFragmentDirections.confirmPhone(status.data!!))
                 }
                 is UIState.Loading ->{
-                    if(loadingFragment.dialog!=null)
+                    if(loadingFragment.dialog==null)
                    loadingFragment.show(requireActivity().supportFragmentManager, LoadingFragment.TAG)
                 }
             }

@@ -8,11 +8,16 @@ import retrofit2.Response
 import retrofit2.http.*
 
 interface ShopService {
+
+
     @GET("/api/sendEmail/{email}/{code}")
     suspend fun authorizeEmail(@Path("email") email: String, @Path("code") code: String): Response<Boolean>
 
     @GET ("/api/get/all/product/favorites/{login}")
     suspend fun getFavoriteProduct(@Path("login") login: String): Response<List<ProductNetwork>>
+
+    @GET("/api/get/orders/{login}")
+    suspend fun getUserPurches(@Path("login")login:String ): Response<List<ProductNetwork>>
 
     @GET("/api/get/user/by/login/")
     fun getUserInfo(@Query("login") login: String): Response<List<UserDatabase>>
@@ -84,6 +89,5 @@ interface ShopService {
     @POST("/{login}/user/purchase")
     fun countOfUser(@Body login: String): Response<List<ProductDatabase>>
 
-    @GET("/{login}/user/purchase")
-    fun getPurchases(@Path("login") login: String): Response<List<ProductDatabase>>
+
 }

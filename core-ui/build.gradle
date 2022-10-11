@@ -35,5 +35,10 @@ android {
 dependencies {
     implementation 'com.google.android.material:material:1.6.1'
     implementation 'androidx.navigation:navigation-fragment-ktx:2.5.1'
+    implementation project(path: ':core')
+    // загрузка фото
+    implementation 'com.github.bumptech.glide:glide:4.14.1'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.14.1'
 
+    implementation "androidx.cardview:cardview:1.0.0"
 }

@@ -82,9 +82,6 @@ open class shopRepository @Inject constructor(
         }
     )
 
-    override suspend fun getUser(login: String): Flow<UIState<user>> {
-        return flow { emit(UIState.Success(user("-", "-", "-", "-", "-", "-", listOf(), listOf(), "-", "-"))) }
-    }
 
     override suspend fun login(login: String, password: String) = networkBoundResource(
         query = {
@@ -168,6 +165,36 @@ open class shopRepository @Inject constructor(
         saveFetchResult = {
             withContext(Dispatchers.IO) {
                 Log.i("RepoLog", "Inside product saveFetchResult body =  " + it.body())
+
+                if (it.body() != null) {
+                    if (it.body()!!.isEmpty()) throw Exception("Incorrect password or login")
+                    it.body()!!.map { localDB.userDao().addProduct(it.asProductDataBace()) }
+                } else throw Exception("Sever error")
+            }
+        }
+    )
+
+
+    override suspend fun getPurchese() =  networkBoundResource(
+        query = {
+            Log.i("RepoLog", "Inside Purchase query")
+            flow {
+                val resQuery = localDB.userDao().getAllProducts().
+                filter { it.orderLogin.length>2 }
+                Log.i("RepoLog", "prod + $resQuery")
+                if (resQuery.isNotEmpty()) emit(resQuery.map { it.asProductData() })
+                else emit(listOf())
+            }.flowOn(Dispatchers.IO)
+        },
+        fetch = {
+            withContext(Dispatchers.IO) {
+                Log.i("RepoLog", "Inside Purchase product fetch ")
+                remoteDB.getUserPurches(curUser.value!!.login)
+            }
+        },
+        saveFetchResult = {
+            withContext(Dispatchers.IO) {
+                Log.i("RepoLog", "Inside Purchase product saveFetchResult body =  " + it.body())
 
                 if (it.body() != null) {
                     if (it.body()!!.isEmpty()) throw Exception("Incorrect password or login")

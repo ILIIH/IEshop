@@ -7,5 +7,7 @@ data class product(
     val publishData: String,
     val photos: List<String>,
     val ownerLogin: String,
-    val id: Int
+    val id: Int,
+    val orderLogin: String? = null,
+    val orderDate: String?= null
 )

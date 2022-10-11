@@ -2,4 +2,10 @@
     <string name="app_name">profile</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="in_progress">• In Progress</string>
+    <string name="your_order_is_on_its_way">Your order is on its way!</string>
+    <string name="orders_will_arrive_in_3_days">Orders will arrive in 3 days!</string>
+    <string name="track">TRACK</string>
+    <string name="my_account">My Account</string>
+    <string name="edit_your_informations">Edit your informations</string>
 </resources>

@@ -16,6 +16,7 @@ import com.example.core_ui.screens.ErrorDialogFragment
 import com.example.main.databinding.FragmentHomeBinding
 import dagger.Lazy
 import javax.inject.Inject
+import com.example.core_ui.adapters.recycler.ProductAdapter
 
 class HomeFragment : Fragment() {
     @Inject
