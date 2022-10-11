@@ -13,15 +13,18 @@ import com.example.core_ui.databinding.SecondItemLayoutBinding
 
 class ProductAdapter : ListAdapter<product, RecyclerView.ViewHolder>(DiffCallback()) {
 
-    private var firstLayout: Boolean = false
+    private var firstLayout:recycleType  = recycleType.ITEM
 
     fun setRecyclerViewLayout(){
-        firstLayout = true
+        firstLayout = recycleType.CHATEGORY
     }
-
+    fun setPurchaseStyle(){
+        firstLayout = recycleType.PURCHASE
+    }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int):  RecyclerView.ViewHolder {
-        return if(!firstLayout) FirstLayoutHolder.from(parent)
-        else SecondLayoutHolder.from(parent)
+         if(firstLayout == recycleType.CHATEGORY) return FirstLayoutHolder.from(parent)
+         else if(firstLayout == recycleType.ITEM)  return SecondLayoutHolder.from(parent)
+        else return SecondLayoutHolder.from(parent) // to change 
     }
 
     override fun onBindViewHolder(holder:  RecyclerView.ViewHolder, position: Int) {
@@ -83,4 +86,10 @@ class DiffCallback : DiffUtil.ItemCallback<product>() {
     override fun areContentsTheSame(oldItem: product, newItem: product): Boolean {
         return oldItem == newItem
     }
+}
+
+sealed class recycleType{
+    object CHATEGORY : recycleType()
+    object ITEM : recycleType()
+    object PURCHASE : recycleType()
 }
