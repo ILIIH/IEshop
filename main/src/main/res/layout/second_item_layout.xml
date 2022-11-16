@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+<FrameLayout
+    android:id="@+id/root_layout"
+    android:layout_width="205dp"
+    android:layout_height="248dp"
+    android:layout_marginEnd="10dp"
+    >
+
+    <ImageView
+        android:id="@+id/item_icon"
+        android:layout_width="180dp"
+        android:layout_height="180dp"
+        android:layout_gravity="center_horizontal"
+        app:cardElevation="10dp"
+        android:elevation="10dp"
+        app:srcCompat="@drawable/product" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardviewCategoryItem"
+        android:layout_width="match_parent"
+        android:layout_height="160dp"
+        android:layout_gravity="bottom"
+        android:layout_marginBottom="3dp"
+        app:cardBackgroundColor="@color/cardColor"
+        app:cardCornerRadius="50dp"
+        app:cardElevation="5dp">
+
+        <TextView
+            android:id="@+id/category"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center_horizontal"
+            android:layout_marginBottom="45dp"
+            android:ellipsize="end"
+            android:fontFamily="@font/dm_sans_bold"
+            android:maxLines="1"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:singleLine="true"
+            android:text="Speakers"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/categoryCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center_horizontal"
+            android:layout_marginBottom="25dp"
+            android:fontFamily="@font/dm_sans"
+
+            android:text="100+ Product"
+            android:textSize="12sp" />
+    </androidx.cardview.widget.CardView>
+
+</FrameLayout>
+</layout>

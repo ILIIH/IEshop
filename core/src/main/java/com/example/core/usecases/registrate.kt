@@ -7,7 +7,6 @@ import com.example.core.domain.error.UIState
 import com.example.core.domain.user
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
-import kotlinx.coroutines.flow.flow
 
 class registrate constructor(private val repository: repository) {
 

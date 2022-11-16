@@ -66,6 +66,7 @@ class ConfirmationFragment : Fragment() {
 
                 }is UIState.Success -> {
                 authViewModel.login(args.curUser.login,args.curUser.password,false)
+                requireActivity().viewModelStore.clear();
                 findNavController().navigate(com.example.main.R.id.main_navigation)
                 }
                 is UIState.Loading ->{

@@ -5,12 +5,13 @@ import com.example.authentication.di.authDeps
 import com.example.core.data.repository.repository
 import com.example.ieshop.MainActivity
 import com.example.ieshop.framework.repository.shopRepository
+import com.example.main.di.mainDeps
 import dagger.*
 import javax.inject.Scope
 
 @AppScope
 @Component(modules = [NetworkModule::class, RoomModule::class, RepoModule::class])
-interface AppComponent : authDeps {
+interface AppComponent : authDeps, mainDeps {
 
     @Component.Builder
     interface Builder {
@@ -20,7 +21,7 @@ interface AppComponent : authDeps {
     }
     override val repository: repository
 
-    fun injectMainActivity(activity:MainActivity)
+    fun injectMainActivity(activity: MainActivity)
 }
 
 @Module

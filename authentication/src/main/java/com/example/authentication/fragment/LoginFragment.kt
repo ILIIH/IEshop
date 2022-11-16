@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -61,8 +60,8 @@ class LoginFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         val view = FragmentLoginBinding.inflate(layoutInflater, container, false)
-        val loginButton =  view.signInFacebookButton
-        val callbackManager = CallbackManager.Factory.create();
+        val loginButton = view.signInFacebookButton
+        val callbackManager = CallbackManager.Factory.create()
 
         // prepare Spiner with counties
         (view.spinner as AutoCompleteTextView).setText("Kabul, Afghanistan")
@@ -72,7 +71,6 @@ class LoginFragment : Fragment() {
 
         // ///////////// FaceBook Login ////////////////////
 
-
         view.signInFacebookLayout.setOnClickListener {
             loginButton.performClick()
         }
@@ -80,8 +78,9 @@ class LoginFragment : Fragment() {
         loginButton.setOnClickListener {
             val accessToken = AccessToken.getCurrentAccessToken()
             val isLoggedIn = accessToken != null && !accessToken.isExpired
-            if(isLoggedIn) LoginManager.getInstance().logInWithReadPermissions(
-                activity, listOf("public_profile")
+            if (isLoggedIn) LoginManager.getInstance().logInWithReadPermissions(
+                activity,
+                listOf("public_profile")
             )
 
             val request = GraphRequest.newMeRequest(
@@ -99,49 +98,50 @@ class LoginFragment : Fragment() {
             parameters.putString("fields", "id,name,link,picture.type(large)")
             request.parameters = parameters
             request.executeAsync()
-
         }
 
         // Callback registration
-        loginButton.registerCallback(callbackManager, object : FacebookCallback<LoginResult?> {
-            override fun onSuccess(loginResult: LoginResult?) {
-            }
+        loginButton.registerCallback(
+            callbackManager,
+            object : FacebookCallback<LoginResult?> {
+                override fun onSuccess(loginResult: LoginResult?) {
+                }
 
-            override fun onCancel() {
-                val ErrorMeasage = Bundle()
-                ErrorMeasage.putString("Measage","Cancel of request")
-                errorFragment.arguments = ErrorMeasage
-                errorFragment.show(requireActivity().supportFragmentManager, ErrorDialogFragment.TAG)
-            }
+                override fun onCancel() {
+                    val ErrorMeasage = Bundle()
+                    ErrorMeasage.putString("Measage", "Cancel of request")
+                    errorFragment.arguments = ErrorMeasage
+                    errorFragment.show(requireActivity().supportFragmentManager, ErrorDialogFragment.TAG)
+                }
 
-            override fun onError(exception: FacebookException) {
-                val ErrorMeasage = Bundle()
-                ErrorMeasage.putString("Measage","Error of request $exception")
-                errorFragment.arguments = ErrorMeasage
-                errorFragment.show(requireActivity().supportFragmentManager, ErrorDialogFragment.TAG)
+                override fun onError(exception: FacebookException) {
+                    val ErrorMeasage = Bundle()
+                    ErrorMeasage.putString("Measage", "Error of request $exception")
+                    errorFragment.arguments = ErrorMeasage
+                    errorFragment.show(requireActivity().supportFragmentManager, ErrorDialogFragment.TAG)
+                }
             }
-        })
-        //////////////////////////////////////////////////
+        )
+        // ////////////////////////////////////////////////
 
         authViewModel._loginState.observe(requireActivity()) { result ->
 
             when (result) {
                 is UIState.Error -> {
-                    if(loadingFragment.dialog!=null)loadingFragment.dismiss()
+                    if (loadingFragment.dialog != null)loadingFragment.dismiss()
                     val ErrorMeasage = Bundle()
-                    ErrorMeasage.putString("Measage",result.error.toString())
+                    ErrorMeasage.putString("Measage", result.error.toString())
                     errorFragment.arguments = ErrorMeasage
                     errorFragment.show(requireActivity().supportFragmentManager, ErrorDialogFragment.TAG)
-
-                }is UIState.Success -> {
-                    if(loadingFragment.dialog!=null)loadingFragment.dismiss()
-
+                } is UIState.Success -> {
+                    if (loadingFragment.dialog != null)loadingFragment.dismiss()
+                    requireActivity().viewModelStore.clear()
                     findNavController().navigate(com.example.main.R.id.main_navigation)
-
-            }
-                is UIState.Loading ->{
-                    if(loadingFragment.dialog!=null)
-                    loadingFragment.show(requireActivity().supportFragmentManager, LoadingFragment.TAG)
+                }
+                is UIState.Loading -> {
+                    if (loadingFragment.dialog != null) {
+                        loadingFragment.show(requireActivity().supportFragmentManager, LoadingFragment.TAG)
+                    }
                 }
             }
         }
@@ -152,12 +152,6 @@ class LoginFragment : Fragment() {
 
         view.signUpButton.setOnClickListener { findNavController().navigate(R.id.to_registrate) }
 
-
         return view.root
     }
-
-
 }
-
-
-

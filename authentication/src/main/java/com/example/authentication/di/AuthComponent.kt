@@ -6,7 +6,6 @@ import com.example.authentication.fragment.ConfirmationFragment
 import com.example.authentication.fragment.LoginFragment
 import com.example.authentication.fragment.RegistrateFragment
 import com.example.core.data.repository.repository
-import com.example.core.usecases.getUser
 import com.example.core.usecases.login
 import com.example.core.usecases.registrate
 import com.example.core.usecases.validateEmail
@@ -53,7 +52,7 @@ interface authDeps {
 }
 
 interface AuthDepsProvider {
-    val deps: authDeps
+    val authDeps: authDeps
 }
 
 val Context.authDepsProvider: AuthDepsProvider
