@@ -6,5 +6,6 @@ data class product(
     val type: String,
     val publishData: String,
     val photos: List<String>,
-    val ownerLogin: String
+    val ownerLogin: String,
+    val id: Int
 )
